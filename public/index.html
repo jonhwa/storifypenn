@@ -1,194 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Ruby on Rails: Welcome aboard</title>
-    <style type="text/css" media="screen">
+    <title>Storify Penn</title>
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <style>
       body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
-
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
-
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
-
-
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
-
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
-
-      #footer {
-        clear: both;
-      }
-
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
-
-
-      #header {
-        background-image: url("assets/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-
-
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -55px;
-        margin-right: -10px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-
-      #about-content ul {
-        padding: 0;
-        list-style-type: none;
-      }
-
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-
-
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-
-
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
-      }
-
-      .filename {
-        font-style: italic;
+        padding-top: 60px;
       }
     </style>
-    <script type="text/javascript">
-      function about() {
-        info = document.getElementById('about-content');
-        if (window.XMLHttpRequest)
-          { xhr = new XMLHttpRequest(); }
-        else
-          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
-        xhr.open("GET","rails/info/properties",false);
-        xhr.send("");
-        info.innerHTML = xhr.responseText;
-        info.style.display = 'block'
-      }
-    </script>
+  
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="bootstrap.min.js"></script>
   </head>
   <body>
-    <div id="page">
-      <p>"I politely ask you to refrain yourself good sir."</p>
-      <img src="lolcat.gif" alt="LOLCat" />
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <!--<span class="icon-bar"></span>
+            <span class="icon-bar"></span>-->
+          </a>
+          <a class="brand" href="#">Storify Penn</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <!--<li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>-->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-unit">
+        <h1>StorifyPenn</h1>
+        <p>We match those who need storage with those who have space.</p>
+        <p><a class="btn btn-primary btn-large">Find Storage</a> <a class="btn btn-primary btn-large">List Space</a></p>
+      </div>
+      <h2>Add your storage location</h2>
+    	<form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="name">Name</label>
+          <div class="controls">
+            <input type="text" id="name" placeholder="Your name">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="address">Street Address</label>
+          <div class="controls">
+            <input type="text" id="address" placeholder="Street address">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="city">City</label>
+          <div class="controls">
+            <input type="text" id="city" placeholder="City">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="state">State</label>
+          <div class="controls">
+            <input type="text" id="state" placeholder="State">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="zipcode">Zipcode</label>
+          <div class="controls">
+            <input type="text" id="zipcode" placeholder="Zipcode">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="rate">Monthly rate</label>
+          <div class="controls">
+            <input type="text" id="rate" placeholder="Monthly rate">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn">Submit Location</button>
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
