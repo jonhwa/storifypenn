@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122002943) do
+ActiveRecord::Schema.define(:version => 20130202224004) do
+
+  create_table "contracts", :force => true do |t|
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.integer  "location_id"
+    t.date     "begin"
+    t.date     "end"
+    t.integer  "rate"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "contracts", ["buyer_id"], :name => "index_contracts_on_buyer_id"
+  add_index "contracts", ["location_id"], :name => "index_contracts_on_location_id"
+  add_index "contracts", ["seller_id"], :name => "index_contracts_on_seller_id"
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -20,6 +35,16 @@ ActiveRecord::Schema.define(:version => 20130122002943) do
     t.string   "state"
     t.integer  "zipcode"
     t.decimal  "rate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "password"
+    t.integer  "zipcode"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

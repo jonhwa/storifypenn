@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Seller:</b>
+  <%= @contract.seller %>
+</p>
+
+<p>
+  <b>Buyer:</b>
+  <%= @contract.buyer %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @contract.location %>
+</p>
+
+<p>
+  <b>Begin:</b>
+  <%= @contract.begin %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @contract.end %>
+</p>
+
+<p>
+  <b>Rate:</b>
+  <%= @contract.rate %>
+</p>
+
+
+<%= link_to 'Edit', edit_contract_path(@contract) %> |
+<%= link_to 'Back', contracts_path %>
