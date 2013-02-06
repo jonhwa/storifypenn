@@ -2,10 +2,10 @@ Storifypenn::Application.routes.draw do
   resources :contracts
 
 
-  resources :users
-
-
   resources :locations
+
+
+  resources :users
 
 
   # The priority is based upon order of creation:

@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  firstname: MyString
-  lastname: MyString
+  first_name: MyString
+  last_name: MyString
   email: MyString
   password: MyString
-  zipcode: 1
+  zipcode: MyString
 
 two:
-  firstname: MyString
-  lastname: MyString
+  first_name: MyString
+  last_name: MyString
   email: MyString
   password: MyString
-  zipcode: 1
+  zipcode: MyString

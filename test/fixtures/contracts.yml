@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  seller: 
-  buyer: 
+  seller_user: 
+  buyer_user: 
   location: 
-  begin: 2013-02-02
-  end: 2013-02-02
+  begin: 2013-02-05
+  end: 2013-02-05
   rate: 1
 
 two:
-  seller: 
-  buyer: 
+  seller_user: 
+  buyer_user: 
   location: 
-  begin: 2013-02-02
-  end: 2013-02-02
+  begin: 2013-02-05
+  end: 2013-02-05
   rate: 1

@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Seller</th>
-    <th>Buyer</th>
+    <th>Seller user</th>
+    <th>Buyer user</th>
     <th>Location</th>
     <th>Begin</th>
     <th>End</th>
@@ -15,8 +15,8 @@
 
 <% @contracts.each do |contract| %>
   <tr>
-    <td><%= contract.seller %></td>
-    <td><%= contract.buyer %></td>
+    <td><%= contract.seller_user %></td>
+    <td><%= contract.buyer_user %></td>
     <td><%= contract.location %></td>
     <td><%= contract.begin %></td>
     <td><%= contract.end %></td>

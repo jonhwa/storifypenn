@@ -1,3 +1,4 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address, :city, :name, :rate, :state, :zipcode
+  belongs_to :user
+  attr_accessible :address, :city, :rate, :state, :zipcode
 end
