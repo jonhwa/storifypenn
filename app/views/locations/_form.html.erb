@@ -32,8 +32,18 @@
     <%= f.number_field :rate %>
   </div>
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.collection_select :user, User.all, :id, :last_name %>
+    <%= f.label :ac, "Amenities" %><br />
+    <%= f.check_box :ac %> <b>A/C</b> <br />
+    <%= f.check_box :dehumidifier %> <b>Dehumidifier</b> <br />
+  </div>
+  <div class="field">
+    <%= f.label :available %><br />
+    <%= f.radio_button :available, "Yes" %> Yes <br />
+    <%= f.radio_button :available, "No" %> No
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.collection_select :user_id, User.all, :id, :last_name %>
   </div>
   <div class="actions">
     <%= f.submit %>

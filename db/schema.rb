@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206033006) do
+ActiveRecord::Schema.define(:version => 20130212031224) do
 
   create_table "contracts", :force => true do |t|
     t.integer  "seller_user_id"
@@ -35,8 +35,11 @@ ActiveRecord::Schema.define(:version => 20130206033006) do
     t.string   "zipcode"
     t.integer  "rate"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.boolean  "ac"
+    t.boolean  "dehumidifier"
+    t.boolean  "available"
   end
 
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
