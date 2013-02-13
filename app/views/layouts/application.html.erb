@@ -7,26 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    
+  <div id="wrap">
+    <div class="container">
+      <ul class="nav nav-pills pull-right">
+        <li class="<%= 'active' if current_page?(:controller => 'locations') %>">
+          <a href="/locations">Locations</a>
+        </li>
+        <li class="<%= 'active' if current_page?(:controller => 'users') %>">
+          <a href="/users">Users</a>
+        </li>
+        <li class="<%= 'active' if current_page?(:controller => 'contracts') %>">
+          <a href="/contracts">Contracts</a>
+        </li>
+      </ul>
 
-    <ul class="nav nav-pills pull-right">
-      <li class="<%= 'active' if current_page?(:controller => 'locations') %>">
-        <a href="/locations">Locations</a>
-      </li>
-      <li class="<%= 'active' if current_page?(:controller => 'users') %>">
-        <a href="/users">Users</a>
-      </li>
-      <li class="<%= 'active' if current_page?(:controller => 'contracts') %>">
-        <a href="/contracts">Contracts</a>
-      </li>
-    </ul>
+      <h3 class="muted"><a class="nostyle" href="/">StorifyPenn</a></h1>
 
-    <h3 class="muted">StorifyPenn</h1>
+      <hr>
 
-    <hr>
+      <%= yield %>
+    </div>
 
-    <%= yield %>
+    <div id="push"></div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>&copy; Jonathan Hwa 2013</p>
+    </div>
   </div>
 </body>
 </html>

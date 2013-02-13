@@ -38,12 +38,12 @@
   </div>
   <div class="field">
     <%= f.label :available %><br />
-    <%= f.radio_button :available, 1 %> Yes <br />
-    <%= f.radio_button :available, 0 %> No
+    <%= f.radio_button :available, true %> Yes <br />
+    <%= f.radio_button :available, false %> No
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.collection_select :user_id, User.all, :id, :last_name %>
+    <%= f.collection_select :user_id, User.all, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>
