@@ -11,22 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212031224) do
+ActiveRecord::Schema.define(:version => 20130213183952) do
 
   create_table "contracts", :force => true do |t|
-    t.integer  "seller_user_id"
-    t.integer  "buyer_user_id"
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
     t.integer  "location_id"
     t.date     "begin"
     t.date     "end"
     t.integer  "rate"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  add_index "contracts", ["buyer_user_id"], :name => "index_contracts_on_buyer_user_id"
+  add_index "contracts", ["buyer_id"], :name => "index_contracts_on_buyer_user_id"
   add_index "contracts", ["location_id"], :name => "index_contracts_on_location_id"
-  add_index "contracts", ["seller_user_id"], :name => "index_contracts_on_seller_user_id"
+  add_index "contracts", ["seller_id"], :name => "index_contracts_on_seller_user_id"
 
   create_table "locations", :force => true do |t|
     t.string   "address"
