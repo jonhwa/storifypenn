@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :seller_user %><br />
-    <%= f.text_field :seller_user %>
+    <%= f.collection_select :seller_user, User.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :buyer_user %><br />
-    <%= f.text_field :buyer_user %>
+    <%= f.collection_select :buyer_user, User.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.collection_select :location, Location.all, :id, :address %>
   </div>
   <div class="field">
     <%= f.label :begin %><br />
