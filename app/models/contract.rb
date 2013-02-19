@@ -4,6 +4,8 @@ class Contract < ActiveRecord::Base
   belongs_to :location
   attr_accessible :seller_id, :buyer_id, :location_id, :begin, :end, :rate
 
+  validates :seller, :buyer, :location, :presence => true
+
   def seller_name
   	(seller.first_name + " " + seller.last_name) if seller
   end
