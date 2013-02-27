@@ -1,6 +1,5 @@
 class AddDeviseToUsers < ActiveRecord::Migration
   def self.up
-    User.delete_all
     remove_column :users, :email
 
     change_table(:users) do |t|
