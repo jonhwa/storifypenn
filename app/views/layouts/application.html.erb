@@ -10,22 +10,31 @@
   <div id="wrap">
     <div class="container">
       <ul class="nav nav-pills pull-right">
-        <li class="<%= 'active' if current_page?(:controller => 'locations') %>">
-          <a href="/locations">Locations</a>
-        </li>
-        <li class="<%= 'active' if current_page?(:controller => 'users') %>">
-          <a href="/users">Users</a>
-        </li>
-        <li class="<%= 'active' if current_page?(:controller => 'contracts') %>">
-          <a href="/contracts">Contracts</a>
-        </li>
+        <li><%= link_to('Locations', locations_path) %></li>
+        <li><%= link_to('Users', users_path) %></li>
+        <li><%= link_to('Contracts', contracts_path) %></li>
       </ul>
 
       <h3 class="muted"><a class="nostyle" href="/">StorifyPenn</a></h1>
 
       <hr>
-      <a href="#" class="btn btn-link pull-right less-top">Sign in</a>
-
+      <% if user_signed_in? %>
+        <%= link_to('Sign out', destroy_user_session_path, :method => :delete, :class => 'btn btn-link pull-right less-top') %>
+      <% else %>
+        <%= link_to('Sign in', new_user_session_path, :class => 'btn btn-link pull-right less-top') %>
+      <% end %>
+      
+      <% if alert %>
+        <div class="alert alert-error">
+          <%= alert %>
+        </div>
+      <% end %>
+      <% if notice %>
+        <div class="alert alert-success">
+          <%= notice %>
+        </div>
+      <% end %>
+      
       <%= yield %>
     </div>
 

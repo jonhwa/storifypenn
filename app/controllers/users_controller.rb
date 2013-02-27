@@ -21,10 +21,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/login
-  # GET /users/login.json
-  
-
   # GET /users/new
   # GET /users/new.json
   def new
