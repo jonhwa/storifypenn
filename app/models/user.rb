@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	has_many :locations
 	attr_accessible :email, :first_name, :last_name, :password, :zipcode
 
-	validates :first_name, :last_name, :email, :password, :presence => true
+	validates :first_name, :last_name, :email, :presence => true
 	validates :email, :email => true
 
 	def name
