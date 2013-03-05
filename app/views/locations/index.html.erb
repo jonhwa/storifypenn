@@ -1,3 +1,14 @@
+<%= javascript_tag do %>
+    window.locations = <%= raw Location.limit(10).to_json %>
+    <% if user_signed_in? %>
+        window.center = <%= current_user.zipcode %>
+    <% end %>
+<% end %>
+
+<% content_for(:head) do %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBy8s0syQBgpYzfx100yEkYRK--ZFK1mPU&sensor=false" %>
+<% end %>
+
 <% if !user_signed_in? %>
     <div class="narrow center">
         <h1>StorifyPenn matches people who need storage with people who have it.</h1>
@@ -7,17 +18,30 @@
 
 <h2>Storage locations near you</h2>
 
-<ul class="thumbnails">
-    <% @locations.each do |location| %>
-        <li class="span6">
-            <div class="thumbnail">
-                <p><%= link_to(location.address, location) %></p>
-                <p>Map goes here</p>
-            </div>
-        </li>
-    <% end %>
-</ul>
-
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Address View</a></li>
+        <li><a href="#tab2" data-toggle="tab">Map View</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <ul class="thumbnails">
+                <% @locations.each do |location| %>
+                    <li class="span6">
+                        <div class="thumbnail">
+                            <p><%= link_to(location.address, location) %></p>
+                            <p>Map goes here</p>
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <div id="map_canvas"></div>
+        </div>
+    </div>
+</div>
+<!--
 <table class="table table-hover">
   <tr>
     <th>Address</th>
@@ -75,5 +99,5 @@
 </table>
 
 <br />
-
+-->
 <%= link_to 'New Location', new_location_path %>

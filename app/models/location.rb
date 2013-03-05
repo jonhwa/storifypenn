@@ -3,7 +3,8 @@ class Location < ActiveRecord::Base
 	attr_accessible :address, :city, :rate, :state, :zipcode, :user_id, :ac, :dehumidifier, :available
 
 	validates :address, :city, :state, :zipcode, :available, :user, :presence => true
-	validates :zipcode, :length => { :in => 5..10 }
+	validates :zipcode, :length => { :is => 5 }
+	validates :zipcode, :numericality => { :only_integer => true }
 
 	geocoded_by :full_address
 	after_validation :geocode
@@ -14,6 +15,5 @@ class Location < ActiveRecord::Base
 
 	def full_address
 		"#{self.address} #{self.city} #{self.state} #{self.zipcode}"
-		#@location.address + " " + @location.city + " " + @location.state + " " + @location.zipcode
 	end
 end
