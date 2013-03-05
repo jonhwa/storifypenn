@@ -5,7 +5,9 @@ Storifypenn::Application.routes.draw do
 
   resources :locations
 
-  #resources :users
+  scope "/admin" do
+    resources :users
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

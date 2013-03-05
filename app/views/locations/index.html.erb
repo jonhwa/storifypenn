@@ -1,9 +1,22 @@
-<div class="narrow center">
-    <h1>StorifyPenn matches people who need storage with people who have it.</h1>
-    <%= link_to('Join!', new_user_registration_path, :class => 'btn btn-large btn-primary') %>
-</div>
+<% if !user_signed_in? %>
+    <div class="narrow center">
+        <h1>StorifyPenn matches people who need storage with people who have it.</h1>
+        <%= link_to('Join now!', new_user_registration_path, :class => 'btn btn-large btn-primary') %>
+    </div>
+<% end %>
 
 <h2>Storage locations near you</h2>
+
+<ul class="thumbnails">
+    <% @locations.each do |location| %>
+        <li class="span6">
+            <div class="thumbnail">
+                <p><%= link_to(location.address, location) %></p>
+                <p>Map goes here</p>
+            </div>
+        </li>
+    <% end %>
+</ul>
 
 <table class="table table-hover">
   <tr>
@@ -16,6 +29,8 @@
     <th>Dehumidifier</th>
     <th>Available</th>
     <th>User</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
     <th></th>
     <th></th>
     <th></th>
@@ -28,10 +43,30 @@
     <td><%= location.state %></td>
     <td><%= location.zipcode %></td>
     <td><%= location.rate %></td>
-    <td><%= location.ac %></td>
-    <td><%= location.dehumidifier %></td>
-    <td><%= location.available %></td>
+    <td>
+        <% if location.ac %>
+            Yes
+        <% else %>
+            No
+        <% end %>
+    </td>
+    <td>
+        <% if location.dehumidifier %>
+            Yes
+        <% else %>
+            No
+        <% end %>
+    </td>
+    <td>
+        <% if location.available %>
+            Yes
+        <% else %>
+            No
+        <% end %>
+    </td>
     <td><%= location.user_name %></td>
+    <td><%= location.latitude %></td>
+    <td><%= location.longitude %></td>
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>

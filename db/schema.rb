@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226033824) do
+ActiveRecord::Schema.define(:version => 20130301014346) do
 
   create_table "contracts", :force => true do |t|
     t.integer  "seller_id"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20130226033824) do
     t.boolean  "ac"
     t.boolean  "dehumidifier"
     t.boolean  "available"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
