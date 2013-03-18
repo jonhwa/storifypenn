@@ -3,27 +3,31 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 @initialize = ->
-  myLatlng = new google.maps.LatLng(39.95017, -75.20505)
+  #Get user's latitude and longitude, or default center if not defined
+  if userLat? and userLon?
+    myLatlng = new google.maps.LatLng(userLat, userLon)
+  else
+    myLatlng = new google.maps.LatLng(39.952969, -75.201395)
+  
   mapOptions =
-    zoom: 14
+    zoom: 16
     center: myLatlng
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions)
 
-  #console.log(locations)
-  
-  for location of locations
-    if locations.hasOwnProperty(location)
-      lat = locations[location].latitude
-      lon = locations[location].longitude
-      myLatlng = new google.maps.LatLng(lat, lon)
+  if locations?
+    for location of locations
+      if locations.hasOwnProperty(location)
+        lat = locations[location].latitude
+        lon = locations[location].longitude
+        myLatlng = new google.maps.LatLng(lat, lon)
 
-      marker = new google.maps.Marker(
-        position: myLatlng
-        map: map
-        title: "Hello World!"
-      )
+        marker = new google.maps.Marker(
+          position: myLatlng
+          map: map
+          title: "Hello World!"
+        )
 
   $('a[href="#tab2"]').on "shown", (e) ->
     center = map.getCenter()

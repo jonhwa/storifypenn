@@ -19,9 +19,10 @@
 
       <hr>
       <% if user_signed_in? %>
-        <%= link_to('Sign out', destroy_user_session_path, :method => :delete, :class => 'btn btn-link pull-right less-top') %>
+        <%= link_to('Sign out', destroy_user_session_path, :method => :delete, :class => 'btn btn-link pull-right no-top-margin') %>
+        <%= link_to('Profile', edit_user_registration_path, :class => 'btn btn-link pull-right no-top-margin') %>
       <% else %>
-        <%= link_to('Sign in', new_user_session_path, :class => 'btn btn-link pull-right less-top') %>
+        <%= link_to('Sign in', new_user_session_path, :class => 'btn btn-link pull-right no-top-margin') %>
       <% end %>
       
       <% if alert %>

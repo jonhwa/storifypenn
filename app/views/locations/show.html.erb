@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <b>Address:</b>
   <%= @location.address %>
@@ -26,16 +27,6 @@
 </p>
 
 <p>
-  <b>A/C:</b>
-  <%= @location.ac %>
-</p>
-
-<p>
-  <b>Dehumidifier:</b>
-  <%= @location.dehumidifier %>
-</p>
-
-<p>
   <b>Available:</b>
   <%= @location.available %>
 </p>
@@ -45,6 +36,28 @@
   <%= @location.user_name %>
 </p>
 
+<div style="width: 250px;">
+  <table class="table table-bordered center">
+    <thead>
+      <tr>
+        <th style="width: 125px;">A/C</th>
+        <th style="width: 125px;">Dehumidifier</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><% if @location.ac %>
+          <i class="icon-ok"></i>
+          <% end %>
+        </td>
+        <td><% if @location.dehumidifier %>
+          <i class="icon-ok"></i>
+          <% end %>
+        </td>
+      </tr>
+    </tbody> 
+  </table>
+</div>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

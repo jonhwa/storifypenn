@@ -14,15 +14,21 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :city, :state, :zipcode, :latitude, :longitude
 	has_many :contracts
 	has_many :locations
-	attr_accessible :email, :first_name, :last_name, :password, :zipcode
 
 	validates :first_name, :last_name, :email, :presence => true
 	validates :email, :email => true
 
+  geocoded_by :full_address
+  after_validation :geocode, :if => :address_changed?
+
 	def name
 		"#{self.first_name} #{self.last_name}"
 	end
+
+  def full_address
+    "#{self.address} #{self.city} #{self.state} #{self.zipcode}"
+  end
 end

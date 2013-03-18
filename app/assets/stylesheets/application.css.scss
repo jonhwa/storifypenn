@@ -21,7 +21,11 @@ body {
 }
 
 .center {
-	text-align: center;
+	text-align: center !important;
+}
+
+table.center th, table.center td {
+	text-align: center !important;
 }
 
 div.narrow {
@@ -33,8 +37,16 @@ hr {
 	margin-bottom: 5px !important; 
 }
 
-a.less-top {
+.no-top-margin {
 	margin-top: 0 !important;
+}
+
+.no-left-margin {
+	margin-left: 0 !important;
+}
+
+.center-content {
+	text-align: center;
 }
 
 /* Sticky footer styles
@@ -71,4 +83,10 @@ html, body {
 	  padding-left: 20px;
 	  padding-right: 20px;
 	}
+}
+
+/* Override Bootstrap Settings
+-------------------------------------------------- */
+[class^="icon-"], [class*=" icon-"] {
+  background-image: url(/assets/glyphicons-halflings.png) !important;
 }

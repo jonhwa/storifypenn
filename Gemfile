@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 
 gem 'devise'
 gem 'geocoder'
+gem 'twitter-bootstrap-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
