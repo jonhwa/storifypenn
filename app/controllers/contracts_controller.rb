@@ -46,6 +46,8 @@ class ContractsController < ApplicationController
       if @contract.save
         format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
         format.json { render json: @contract, status: :created, location: @contract }
+
+        Notifications.new_contract(@contract).deliver
       else
         format.html { render action: "new" }
         format.json { render json: @contract.errors, status: :unprocessable_entity }

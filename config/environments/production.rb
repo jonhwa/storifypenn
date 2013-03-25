@@ -20,6 +20,16 @@ Storifypenn::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # SendGrid configuration
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.sendgrid.net',
+    :port => '587',
+    :authentication => :plain,
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => 'heroku.com'
+  }
+
   # Commands given by Devise installation
   config.action_mailer.default_url_options = { :host => 'storifypenn.herokuapp.com' }
 
