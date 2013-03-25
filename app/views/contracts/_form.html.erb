@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
+  <% if params[:from] == 'book' %>
+    <% @location = Location.find_by_id(session['location']) %>
+  <% end %>
+
   <div class="field">
     <%= f.label :seller_id %><br />
-    <%= f.collection_select :seller_id, User.all, :id, :name %>
+    <%= f.collection_select :seller_id, User.all, :id, :name, :selected => @location.user.id %>
   </div>
   <div class="field">
     <%= f.label :buyer_id %><br />
-    <%= f.collection_select :buyer_id, User.all, :id, :name %>
+    <%= f.collection_select :buyer_id, User.all, :id, :name, :selected => current_user.id %>
   </div>
   <div class="field">
     <%= f.label :location_id %><br />
-    <%= f.collection_select :location_id, Location.all, :id, :address %>
+    <%= f.collection_select :location_id, Location.all, :id, :address, :selected => @location.id %>
   </div>
   <div class="field">
     <%= f.label :begin %><br />
@@ -33,7 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :rate %><br />
-    <%= f.number_field :rate %>
+    <%= f.number_field :rate, :value => @location.rate %>
   </div>
   <div class="actions">
     <%= f.submit %>

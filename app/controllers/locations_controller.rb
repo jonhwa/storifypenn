@@ -15,6 +15,9 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
 
+    # Store location ID in session in case we want to access it in Contract controller
+    session['location'] = @location.id
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @location }
