@@ -1,4 +1,8 @@
 class ContractsController < ApplicationController
+  # User must be signed in to create a new contract
+  before_filter :authenticate_user!,
+    :only => [:new]
+
   # GET /contracts
   # GET /contracts.json
   def index
