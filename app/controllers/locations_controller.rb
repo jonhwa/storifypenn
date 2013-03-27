@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.cheapest.top_ten
+    @locations = Location.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +21,16 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @location }
+    end
+  end
+
+  # /search
+  def search
+    @locations = Location.cheapest.top_ten
+
+    respond_to do |format|
+      format.html # search.html.erb
+      format.json { render json: @locations }
     end
   end
 

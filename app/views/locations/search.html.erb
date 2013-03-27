@@ -1,0 +1,68 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBy8s0syQBgpYzfx100yEkYRK--ZFK1mPU&sensor=false" %>
+<% end %>
+
+<%= javascript_tag do %>
+    <!-- Test if there is a search parameter or, failing that, user information. If nothing exists, the Javascript will use Philly as the default -->
+    <% if params.has_key?(:address) %>
+        <% address = params[:address] %>
+        geocodeSuccess = geocode('<%= address %>')
+
+        <!-- Set @locations to the closest, ranked by distance. Else, leave them ordered by price (default) -->
+        <% @locations = Location.near(params[:address], 10, :order => 'distance') %>
+
+    <% elsif user_signed_in? and current_user.latitude? and current_user.longitude? %>
+        window.userLat = <%= current_user.latitude %>
+        window.userLon = <%= current_user.longitude %>
+    <% end %>
+
+    window.locations = <%= raw Location.all.to_json %>
+<% end %>
+
+<% if !user_signed_in? %>
+    <div class="narrow center">
+        <h1>StorifyPenn matches people who need storage with people who have it.</h1>
+        <%= link_to('Join now!', new_user_registration_path, :class => 'btn btn-large btn-primary') %>
+    </div>
+<% end %>
+
+<h2>Storage locations near you</h2>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Address View</a></li>
+        <li><a href="#tab2" data-toggle="tab">Map View</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <% if @locations.blank? %>
+                <p>Nothing came up. Try <%= link_to 'another search.', root_url, :class => 'blue' %></p>
+            <% else %>
+                <ul class="thumbnails">
+                    <% @locations.each do |location| %>
+                        <li class="span6">
+                            <%= link_to(location, :class => 'thumbnail') do %>
+                                <div class="row">
+                                    <div class="span3">
+                                        <p><%= location.user.first_name %><br />
+                                        <%= location.address %><br />
+                                        <%= (location.city + ", " + location.state + " " + location.zipcode) %></p>
+                                    </div>
+                                    <div class="span3 no-left-margin center-content">
+                                        <h1>$<%= location.rate %></h1>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <div id="map_canvas"></div>
+        </div>
+    </div>
+</div>
+
+<br /><br /><br />
+<%= link_to 'List your space', new_location_path %>

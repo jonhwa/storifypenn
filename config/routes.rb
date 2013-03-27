@@ -3,8 +3,10 @@ Storifypenn::Application.routes.draw do
 
   resources :contracts
 
+  #match 'locations/search' => 'location#search'
+  get 'locations/search'
   resources :locations
-
+  
   scope "/admin" do
     resources :users
   end

@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+userLat = undefined
+userLon = undefined
+
 @initialize = ->
   #Get user's latitude and longitude, or default center if not defined
   if userLat? and userLon?
@@ -36,6 +39,14 @@
     map.setZoom zoom
     map.setCenter center
 
-
-
-
+@geocode = (address) ->
+  geocoder = new google.maps.Geocoder()
+  geocoder.geocode
+    address: address, (results, status) ->
+      if status is google.maps.GeocoderStatus.OK
+        userLat = results[0].geometry.location.lat()
+        userLon = results[0].geometry.location.lng()
+        true
+      else
+        alert "Geocode was not successful for the following reason: " + status
+        false
