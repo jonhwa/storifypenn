@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130305205232) do
+ActiveRecord::Schema.define(:version => 20130328162017) do
 
   create_table "contracts", :force => true do |t|
     t.integer  "seller_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130305205232) do
     t.datetime "updated_at",   :null => false
     t.boolean  "ac"
     t.boolean  "dehumidifier"
-    t.boolean  "available"
+    t.date     "available"
     t.float    "latitude"
     t.float    "longitude"
   end

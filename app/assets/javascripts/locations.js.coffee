@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 @initialize = ->
+  $("#available").datepicker()
+
   #Get user's latitude and longitude, or default center if not defined
   if userLat? and userLon?
     myLatlng = new google.maps.LatLng(userLat, userLon)
