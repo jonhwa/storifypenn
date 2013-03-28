@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
 
   # /search
   def search
-    if params.has_key?(:address)
+    if !params[:address].blank?
       address = params[:address]
       @latlng = Geocoder.coordinates(address)
       @notice = "<p>Showing the closest spaces to <u>#{address}</u> <a href='/' class='blue'>(try another search)</a>:</p>"

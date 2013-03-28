@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $("#contract_begin").datepicker()
-  $("#contract_end").datepicker()
+  $("#contract_begin").datepicker({ dateFormat: 'D, dd M yy'})
+  $("#contract_end").datepicker({ dateFormat: 'D, dd M yy'})

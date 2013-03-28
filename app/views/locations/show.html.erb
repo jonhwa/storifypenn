@@ -32,6 +32,13 @@
 </p>
 
 <p>
+  <b>Booked for:</b>
+  <% Contract.where("location_id = #{@location.id}").order("begin").each do |contract| %>
+    <p>From <%= contract.begin %> to <%= contract.end %></p>
+  <% end %>
+</p>
+
+<p>
   <b>User:</b>
   <%= @location.user_name %>
 </p>
