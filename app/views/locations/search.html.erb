@@ -3,20 +3,16 @@
 <% end %>
 
 <%= javascript_tag do %>
-    <!-- Test if there is a search parameter or, failing that, user information. If nothing exists, the Javascript will use Philly as the default -->
-    <% if params.has_key?(:address) %>
-        <% address = params[:address] %>
-        geocodeSuccess = geocode('<%= address %>')
-
-        <!-- Set @locations to the closest, ranked by distance. Else, leave them ordered by price (default) -->
-        <% @locations = Location.near(params[:address], 10, :order => 'distance') %>
-
+    <!-- If no location data exists, the Javascript will use Philly as the default -->
+    <% if !@latlng.blank? %>
+        window.userLat = <%= @latlng[0] %>
+        window.userLon = <%= @latlng[1] %>
     <% elsif user_signed_in? and current_user.latitude? and current_user.longitude? %>
         window.userLat = <%= current_user.latitude %>
         window.userLon = <%= current_user.longitude %>
     <% end %>
 
-    window.locations = <%= raw Location.all.to_json %>
+    window.locations = <%= raw @locations.to_json %>
 <% end %>
 
 <% if !user_signed_in? %>
@@ -38,6 +34,7 @@
             <% if @locations.blank? %>
                 <p>Nothing came up. Try <%= link_to 'another search.', root_url, :class => 'blue' %></p>
             <% else %>
+                <%= @notice.html_safe %>
                 <ul class="thumbnails">
                     <% @locations.each do |location| %>
                         <li class="span6">

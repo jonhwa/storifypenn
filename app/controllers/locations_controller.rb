@@ -26,7 +26,15 @@ class LocationsController < ApplicationController
 
   # /search
   def search
-    @locations = Location.cheapest.top_ten
+    if params.has_key?(:address)
+      address = params[:address]
+      @latlng = Geocoder.coordinates(address)
+      @notice = "<p>Showing the closest spaces to <u>#{address}</u> <a href='/' class='blue'>(try another search)</a>:</p>"
+      @locations = Location.near(@latlng, 10)
+    else
+      @notice = "<p>Your location wasn't found, but here are some locations for you to consider:</p>"
+      @locations = Location.cheapest.top_ten
+    end
 
     respond_to do |format|
       format.html # search.html.erb
