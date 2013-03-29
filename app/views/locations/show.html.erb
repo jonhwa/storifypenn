@@ -1,5 +1,7 @@
-<%= javascript_tag do %>
-  datepicker(<%= raw @booked %>)
+<% content_for(:head) do %>
+  <%= javascript_tag do %>
+    window.booked = <%= raw @booked %>
+  <% end %>
 <% end %>
 
 <p id="notice"><%= notice %></p>
