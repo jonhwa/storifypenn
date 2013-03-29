@@ -2,9 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-@initialize = ->
-  $("#available").datepicker()
+@datepicker = (booked) ->
+  alert 'entered datepicker'
+  $("available").datepicker
+    numberOfMonths: 3
+    beforeShowDay: (date) ->
+      for contract of booked
+        alert contract.begin + " " + contract.end
 
+@initialize = ->
   #Get user's latitude and longitude, or default center if not defined
   if userLat? and userLon?
     myLatlng = new google.maps.LatLng(userLat, userLon)
@@ -37,3 +43,4 @@
     google.maps.event.trigger map, "resize"
     map.setZoom zoom
     map.setCenter center
+

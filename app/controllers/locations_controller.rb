@@ -18,6 +18,14 @@ class LocationsController < ApplicationController
     # Store location ID in session in case we want to access it in Contract controller
     session['location'] = @location.id
 
+    #Find when the location is booked and pass that to javascript function for rendering the calendar
+    @booked = {}
+    Contract.where("location_id = #{@location.id}").order("begin").each do |contract|
+      dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
+      @booked.merge!(dates)
+    end
+    @booked = @booked.to_json
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @location }

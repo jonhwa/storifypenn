@@ -1,3 +1,7 @@
+<%= javascript_tag do %>
+  datepicker(<%= raw @booked %>)
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -28,13 +32,6 @@
 <p>
   <b>Available:</b>
   <div id="available"></div>
-</p>
-
-<p>
-  <b>Booked for:</b>
-  <% Contract.where("location_id = #{@location.id}").order("begin").each do |contract| %>
-    <p>From <%= contract.begin %> to <%= contract.end %></p>
-  <% end %>
 </p>
 
 <p>
