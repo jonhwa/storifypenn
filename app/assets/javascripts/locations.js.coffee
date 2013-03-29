@@ -37,4 +37,12 @@
       map.setCenter center
 
   if booked?
-    $("#available").datepicker numberOfMonths: 3
+    console.log booked
+    $("#available").datepicker
+      numberOfMonths: 3
+      beforeShowDay: (date) ->
+        for contract, dates of booked
+          if booked.hasOwnProperty(contract)
+            if date >= new Date(dates.begin) and date <= new Date(dates.end)
+              return [false, ""]
+        return [true, ""]
