@@ -6,7 +6,7 @@ class Contract < ActiveRecord::Base
   belongs_to :location
   attr_accessible :seller_id, :buyer_id, :location_id, :begin, :end, :rate
 
-  validates :seller, :buyer, :location, :presence => true
+  validates :seller, :buyer, :location, :begin, :end, :presence => true
   validate :validateDates
 
   def seller_name
