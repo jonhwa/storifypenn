@@ -1,4 +1,8 @@
 class LocationsController < ApplicationController
+  # User must be signed in to create a new location
+  before_filter :authenticate_user!,
+    :only => [:new]
+
   # GET /locations
   # GET /locations.json
   def index

@@ -41,10 +41,7 @@
     <%= f.radio_button :available, true %> Yes <br />
     <%= f.radio_button :available, false %> No
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.collection_select :user_id, User.all, :id, :name %>
-  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
     <%= f.submit :class => 'btn btn-large btn-primary' %>
   </div>
