@@ -64,7 +64,7 @@
   </table>
 </div>
 
-<%= link_to('Book this space', new_contract_path(:from => "book"), :class => 'btn btn-large btn-primary') %>
+<%= link_to 'Book this space', new_location_contract_path(@location.id), :class => 'btn btn-large btn-primary' %>
 <br /><br />
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

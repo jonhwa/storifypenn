@@ -21,23 +21,28 @@ class Contract < ActiveRecord::Base
   	location.address if location
   end
 
+  def get_location_id
+    location.id
+  end
+
   def validateDates
     booked = {}
-    Contract.where("location_id = #{@location.id}").order("begin").each do |contract|
+    Contract.where("location_id = #{self.location.id}").order("begin").each do |contract|
       dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
       booked.merge!(dates)
     end
+    #raise 'booked: ' + booked.to_s
 
     for contract in booked
-      contractBegin = booked[contract].begin
-      contractEnd = booked[contract].end
+      contractBegin = Date.strptime(contract[1]['begin'], "%B %d, %Y")
+      contractEnd = Date.strptime(contract[1]['end'], "%B %d, %Y")
 
-      if record.begin >= contractBegin and record.begin <= contractEnd
-        record.errors[:begin] << 'The starting date isn\'t available'
+      if self.begin >= contractBegin and self.begin <= contractEnd
+        errors.add(:begin, 'The starting date isn\'t available')
       end
 
-      if record.end >= contractBegin and record.end <= contractEnd
-        record.errors[:end] << 'The ending date isn\'t available'
+      if self.end >= contractBegin and self.end <= contractEnd
+        errors.add(:end, 'The ending date isn\'t available')
       end
     end
   end

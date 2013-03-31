@@ -1,11 +1,11 @@
 Storifypenn::Application.routes.draw do
   devise_for :users
 
-  resources :contracts
-
   #match 'locations/search' => 'location#search'
   get 'locations/search'
-  resources :locations
+  resources :locations do
+    resources :contracts
+  end
   
   scope "/admin" do
     resources :users

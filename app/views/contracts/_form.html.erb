@@ -1,4 +1,4 @@
-<%= form_for(@contract) do |f| %>
+<%= form_for([@location, @contract], :html => {:multipart => true}) do |f| %>
   <% if @contract.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contract.errors.count, "error") %> prohibited this contract from being saved:</h2>
@@ -9,10 +9,6 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <% if params[:from] == 'book' %>
-    <% @location = Location.find_by_id(session['location']) %>
   <% end %>
 
   <div class="field">

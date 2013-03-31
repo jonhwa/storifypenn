@@ -7,6 +7,7 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
     @contracts = Contract.all
+    @location = Location.find(params[:location_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +19,7 @@ class ContractsController < ApplicationController
   # GET /contracts/1.json
   def show
     @contract = Contract.find(params[:id])
+    @location = Location.find(params[:location_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +31,7 @@ class ContractsController < ApplicationController
   # GET /contracts/new.json
   def new
     @contract = Contract.new
+    @location = Location.find(params[:location_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,17 +42,19 @@ class ContractsController < ApplicationController
   # GET /contracts/1/edit
   def edit
     @contract = Contract.find(params[:id])
+    @location = Location.find(params[:location_id])
   end
 
   # POST /contracts
   # POST /contracts.json
   def create
     @contract = Contract.new(params[:contract])
+    @location = Location.find(params[:location_id])
 
     respond_to do |format|
       if @contract.save
-        format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
-        format.json { render json: @contract, status: :created, location: @contract }
+        format.html { redirect_to location_contract_path(@location.id, @contract.id), notice: 'Contract was successfully created.' }
+        format.json { render json: @contract, status: :created, location: location_contract_path(@location.id, @contract.id) }
 
         Notifications.new_contract(@contract).deliver
       else
@@ -63,6 +68,7 @@ class ContractsController < ApplicationController
   # PUT /contracts/1.json
   def update
     @contract = Contract.find(params[:id])
+    @location = Location.find(params[:location_id])
 
     respond_to do |format|
       if @contract.update_attributes(params[:contract])
