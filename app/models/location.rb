@@ -1,5 +1,6 @@
 class Location < ActiveRecord::Base
 	belongs_to :user
+	has_many :contracts, :order => 'contracts.begin'
 	attr_accessible :address, :city, :rate, :state, :zipcode, :user_id, :ac, :dehumidifier, :available
 
 	validates :address, :city, :state, :zipcode, :user, :presence => true
