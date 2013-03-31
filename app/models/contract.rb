@@ -27,7 +27,7 @@ class Contract < ActiveRecord::Base
 
   def validateDates
     booked = {}
-    Contract.where("location_id = #{self.location.id}").order("begin").each do |contract|
+    self.location.contracts.order("begin").each do |contract|
       dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
       booked.merge!(dates)
     end
