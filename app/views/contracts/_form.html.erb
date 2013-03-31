@@ -12,16 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :seller_id %><br />
-    <%= f.collection_select :seller_id, User.all, :id, :name, :selected => @location.user.id %>
+    <%= label_tag :seller %><br />
+    <%= f.hidden_field :seller_id, :value => @location.user.id %>
+    <%= text_field_tag :seller, @location.user.name, :readonly => true %>
   </div>
   <div class="field">
-    <%= f.label :buyer_id %><br />
-    <%= f.collection_select :buyer_id, User.all, :id, :name, :selected => current_user.id %>
+    <%= label_tag :buyer %><br />
+    <%= f.hidden_field :buyer_id, :value => current_user.id %>
+    <%= text_field_tag :buyer, current_user.name, :readonly => true %>
   </div>
   <div class="field">
-    <%= f.label :location_id %><br />
-    <%= f.collection_select :location_id, Location.all, :id, :address, :selected => @location.id %>
+    <%= label_tag :location %><br />
+    <%= f.hidden_field :location_id, :value => @location.id %>
+    <%= text_field_tag :location, @location.address, :readonly => true %>
   </div>
   <div class="field">
     <%= f.label :begin %><br />
@@ -33,7 +36,7 @@
   </div>
   <div class="field">
     <%= f.label :rate %><br />
-    <%= f.number_field :rate, :value => @location.rate %>
+    <%= f.text_field :rate, :value => @location.rate, :readonly => true %>
   </div>
   <div class="actions">
     <%= f.submit :class => 'btn btn-large btn-primary' %>
