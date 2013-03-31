@@ -3,5 +3,28 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $("#contract_begin").datepicker({ dateFormat: 'D, dd M yy'})
-  $("#contract_end").datepicker({ dateFormat: 'D, dd M yy'})
+	if booked?
+		$("#contract_begin").datepicker
+		  numberOfMonths: 3
+		  dateFormat: 'D, dd M yy'
+		  beforeShowDay: (date) ->
+		    for contract, dates of booked
+		      if booked.hasOwnProperty(contract)
+		        if date >= new Date(dates.begin) and date <= new Date(dates.end)
+		          return [false, ""]
+		    return [true, ""]
+		  onClose: (selectedDate) ->
+		  	$("#contract_end").datepicker "option", "minDate", selectedDate
+
+		$("#contract_end").datepicker
+		  numberOfMonths: 3
+		  dateFormat: 'D, dd M yy'
+		  beforeShowDay: (date) ->
+		    for contract, dates of booked
+		      if booked.hasOwnProperty(contract)
+		        if date >= new Date(dates.begin) and date <= new Date(dates.end)
+		          return [false, ""]
+		    return [true, ""]
+		  onClose: (selectedDate) ->
+		  	$("#contract_begin").datepicker "option", "maxDate", selectedDate
+  

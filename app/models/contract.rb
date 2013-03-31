@@ -31,7 +31,6 @@ class Contract < ActiveRecord::Base
       dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
       booked.merge!(dates)
     end
-    #raise 'booked: ' + booked.to_s
 
     for contract in booked
       contractBegin = Date.strptime(contract[1]['begin'], "%B %d, %Y")

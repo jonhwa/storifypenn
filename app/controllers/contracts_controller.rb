@@ -33,6 +33,14 @@ class ContractsController < ApplicationController
     @contract = Contract.new
     @location = Location.find(params[:location_id])
 
+    #Find when the location is booked and pass that to javascript function for rendering the calendar
+    @booked = {}
+    @location.contracts.each do |contract|
+      dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
+      @booked.merge!(dates)
+    end
+    @booked = @booked.to_json
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @contract }

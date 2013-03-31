@@ -37,7 +37,6 @@
       map.setCenter center
 
   if booked?
-    console.log booked
     $("#available").datepicker
       numberOfMonths: 3
       beforeShowDay: (date) ->
