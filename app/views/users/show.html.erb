@@ -17,7 +17,8 @@
                                 <div class="span3">
                                     <p>Listed by <%= contract.seller.name %><br />
                                     <%= contract.location.address %><br />
-                                	From <%= contract.begin %> to <%= contract.end %></p>
+                                    Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
+                                	From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
                                 </div>
                                 <div class="span3 no-left-margin center-content">
                                     <h1>$<%= contract.rate %></h1>
@@ -38,7 +39,8 @@
                                 <div class="span3">
                                     <p>Booked by <%= contract.buyer.name %><br />
                                     <%= contract.location.address %><br />
-                                	From <%= contract.begin %> to <%= contract.end %></p>
+                                    Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
+                                	From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
                                 </div>
                                 <div class="span3 no-left-margin center-content">
                                     <h1>$<%= contract.rate %></h1>
