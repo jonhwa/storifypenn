@@ -10,6 +10,7 @@ Storifypenn::Application.routes.draw do
   scope "/admin" do
     resources :users
   end
+  match 'users/:id' => 'users#show', :as => :user, :via => :get
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,34 +1,77 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">Buyer Profile</a></li>
+		<li><a href="#tab2" data-toggle="tab">Seller Profile</a></li>
+		<li><a href="#tab3" data-toggle="tab">Personal Information</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab1">
+			<% @booked = Contract.where("buyer_id = #{current_user.id}").order("begin DESC") %>
+			<ul class="thumbnails">
+                <% @booked.each do |contract| %>
+                    <li class="span6">
+                        <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
+                            <div class="row">
+                                <div class="span3">
+                                    <p>Listed by <%= contract.seller.name %><br />
+                                    <%= contract.location.address %><br />
+                                	From <%= contract.begin %> to <%= contract.end %></p>
+                                </div>
+                                <div class="span3 no-left-margin center-content">
+                                    <h1>$<%= contract.rate %></h1>
+                                </div>
+                            </div>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+		</div>
+		<div class="tab-pane" id="tab2">
+			<% @sold = Contract.where("seller_id = #{current_user.id}").order("begin DESC") %>
+			<ul class="thumbnails">
+                <% @sold.each do |contract| %>
+                    <li class="span6">
+                        <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
+                            <div class="row">
+                                <div class="span3">
+                                    <p>Booked by <%= contract.buyer.name %><br />
+                                    <%= contract.location.address %><br />
+                                	From <%= contract.begin %> to <%= contract.end %></p>
+                                </div>
+                                <div class="span3 no-left-margin center-content">
+                                    <h1>$<%= contract.rate %></h1>
+                                </div>
+                            </div>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+		</div>
+		<div class="tab-pane" id="tab3">
+			<p>
+				<b>First name:</b>
+				<%= @user.first_name %>
+			</p>
 
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
+			<p>
+				<b>Last name:</b>
+				<%= @user.last_name %>
+			</p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+			<p>
+				<b>Email:</b>
+				<%= @user.email %>
+			</p>
 
-<p>
-  <b>Zipcode:</b>
-  <%= @user.zipcode %>
-</p>
+			<p>
+				<b>Zipcode:</b>
+				<%= @user.zipcode %>
+			</p>
+		</div>
+	</div>
+</div>
 
-<p>
-  <b>Latitude:</b>
-  <%= @user.latitude %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @user.longitude %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_registration_path(@user) %> |
+<%= link_to 'Back', root_path %>
