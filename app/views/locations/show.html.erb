@@ -47,6 +47,8 @@
       <tr>
         <th style="width: 125px;">A/C</th>
         <th style="width: 125px;">Dehumidifier</th>
+        <th style="width: 125px;">Alarm</th>
+        <th style="width: 125px;">Basement</th>
       </tr>
     </thead>
     <tbody>
@@ -56,6 +58,14 @@
           <% end %>
         </td>
         <td><% if @location.dehumidifier %>
+          <i class="icon-ok"></i>
+          <% end %>
+        </td>
+        <td><% if @location.alarm %>
+          <i class="icon-ok"></i>
+          <% end %>
+        </td>
+        <td><% if @location.basement %>
           <i class="icon-ok"></i>
           <% end %>
         </td>

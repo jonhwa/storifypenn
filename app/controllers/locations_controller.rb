@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   # User must be signed in to create a new location
   before_filter :authenticate_user!,
-    :only => [:new]
+    :only => [:new, :edit]
 
   # GET /locations
   # GET /locations.json
@@ -68,6 +68,11 @@ class LocationsController < ApplicationController
   # GET /locations/1/edit
   def edit
     @location = Location.find(params[:id])
+
+    if current_user.id != @location.user_id
+      flash[:alert] = "You don't have permission to edit this storage space listing."
+      redirect_to :action => "show", :id => @location.id    
+    end
   end
 
   # POST /locations
