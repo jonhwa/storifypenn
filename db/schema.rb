@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130403150016) do
     t.datetime "updated_at",   :null => false
     t.boolean  "ac"
     t.boolean  "dehumidifier"
-    t.date     "available"
+    t.text     "available"
     t.float    "latitude"
     t.float    "longitude"
     t.decimal  "length"
