@@ -8,6 +8,9 @@ class LocationsController < ApplicationController
   def index
     @locations = Location.all
 
+    # Clear session[:locations] for a new search
+    session[:locations] = []
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locations }
@@ -38,7 +41,13 @@ class LocationsController < ApplicationController
 
   # /search
   def search
-    if !params[:address].blank?
+    if !session[:locations].blank?
+      @locations = []
+      session[:locations].each do |location|
+        @locations << Location.find(location)
+      end
+      @notice = session[:notice]
+    elsif !params[:address].blank?
       address = params[:address]
       @latlng = Geocoder.coordinates(address)
       @notice = "<p>Showing the closest spaces to <u>#{address}</u> <a href='/' class='blue'>(try another search)</a>:</p>"
@@ -46,6 +55,12 @@ class LocationsController < ApplicationController
     else
       @notice = "<p>Your location wasn't found, but here are some locations for you to consider:</p>"
       @locations = Location.cheapest.top_ten
+    end
+
+    # Store the resulting location IDs in a session array
+    @locations.each do |location|
+      (session[:locations] ||= []) << location.id
+      session[:notice] = @notice
     end
 
     respond_to do |format|

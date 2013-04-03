@@ -35,11 +35,8 @@
     <%= f.label :ac, "Amenities" %><br />
     <%= f.check_box :ac %> <b>A/C</b> <br />
     <%= f.check_box :dehumidifier %> <b>Dehumidifier</b> <br />
-  </div>
-  <div class="field">
-    <%= f.label :available %><br />
-    <%= f.radio_button :available, true %> Yes <br />
-    <%= f.radio_button :available, false %> No
+    <%= f.check_box :alarm %> <b>Alarm</b> <br />
+    <%= f.check_box :basement %> <b>Basement</b> <br />
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
