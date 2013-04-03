@@ -13,8 +13,15 @@
     <div class="container">
       <ul class="nav nav-pills pull-right">
         <% if user_signed_in? %>
-          <%= link_to('Sign out', destroy_user_session_path, :method => :delete, :class => 'btn btn-link pull-right no-top-margin') %>
-          <%= link_to('Profile', user_path(current_user), :class => 'btn btn-link pull-right no-top-margin') %>
+          <div class="dropdown">
+            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><%= current_user.first_name + ' ' %><b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><%= link_to 'Your Listings', user_path(current_user, :path => 'listings') %></li>
+              <li><%= link_to 'Your Bookings', user_path(current_user, :path => 'bookings') %></li>
+              <li><%= link_to 'Your Profile', user_path(current_user, :path => 'profile') %></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          </div>
         <% else %>
           <%= link_to('Sign in', new_user_session_path, :class => 'btn btn-link pull-right no-top-margin') %>
         <% end %>

@@ -38,7 +38,7 @@
 
   if booked?
     $("#available").datepicker
-      numberOfMonths: 3
+      numberOfMonths: 2
       beforeShowDay: (date) ->
         for contract, dates of booked
           if booked.hasOwnProperty(contract)

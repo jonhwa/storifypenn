@@ -65,6 +65,13 @@ a.blue {
 	margin-bottom: 0px !important;
 }
 
+.dropdown > a.dropdown-toggle {
+	padding: 8px 12px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html, body {

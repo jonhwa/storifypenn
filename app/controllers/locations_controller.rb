@@ -9,6 +9,7 @@ class LocationsController < ApplicationController
     @locations = Location.all
 
     # Clear session[:locations] for a new search
+    session.delete(:locations)
     session[:locations] = []
 
     respond_to do |format|
@@ -58,6 +59,7 @@ class LocationsController < ApplicationController
     end
 
     # Store the resulting location IDs in a session array
+    session.delete(:locations)
     @locations.each do |location|
       (session[:locations] ||= []) << location.id
       session[:notice] = @notice

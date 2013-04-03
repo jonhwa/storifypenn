@@ -2,9 +2,9 @@
 
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#tab1" data-toggle="tab">Buyer Profile</a></li>
-		<li><a href="#tab2" data-toggle="tab">Seller Profile</a></li>
-		<li><a href="#tab3" data-toggle="tab">Personal Information</a></li>
+		<li <%= 'class=active' if params[:path] == 'listings' %>><a href="#tab1" data-toggle="tab">Your Listings</a></li>
+		<li <%= 'class=active' if params[:path] == 'bookings' %>><a href="#tab2" data-toggle="tab">Your Bookings</a></li>
+		<li <%= 'class=active' if params[:path] == 'profile' %>><a href="#tab3" data-toggle="tab">Profile</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
@@ -76,4 +76,4 @@
 </div>
 
 <%= link_to 'Edit', edit_user_registration_path(@user) %> |
-<%= link_to 'Back', root_path %>
+<%= link_to 'Back', locations_search_path %>
