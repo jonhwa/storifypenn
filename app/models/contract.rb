@@ -40,7 +40,7 @@ class Contract < ActiveRecord::Base
         errors.add(:begin, 'The starting date isn\'t available')
       end
 
-      if self.end >= contractBegin and self.end <= contractEnd
+      if (self.end >= contractBegin and self.end <= contractEnd) or (self.begin < contractBegin and self.end > contractEnd)
         errors.add(:end, 'The ending date isn\'t available')
       end
     end
