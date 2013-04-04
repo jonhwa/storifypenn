@@ -37,6 +37,11 @@
       map.setCenter center
 
   if booked?
+    $("#available").datepick
+      monthsToShow: 3
+      renderer: $.datepick.themeRollerRenderer
+      
+    ###
     $("#available").datepicker
       numberOfMonths: 2
       beforeShowDay: (date) ->
@@ -45,3 +50,4 @@
             if date >= new Date(dates.begin) and date <= new Date(dates.end)
               return [false, ""]
         return [true, ""]
+    ###

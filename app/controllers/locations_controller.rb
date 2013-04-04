@@ -10,7 +10,6 @@ class LocationsController < ApplicationController
 
     # Clear session[:locations] for a new search
     session.delete(:locations)
-    session[:locations] = []
 
     respond_to do |format|
       format.html # index.html.erb
