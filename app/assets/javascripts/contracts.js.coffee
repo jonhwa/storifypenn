@@ -3,38 +3,22 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-	if booked?
-		$("#dates").datepick
-			monthsToShow: 3
-			minDate: 0
-			maxDate: '+1y'
-			rangeSelect: true
-			showOtherMonths: true
-			renderer: $.datepick.themeRollerRenderer
-			showTrigger: '<img src="/assets/calendar-blue.gif" alt="Popup" class="trigger datepick-trigger" style="margin-left: 5px; margin-bottom: 10px; cursor: pointer;" />'
-
-		###
-		$("#contract_begin").datepicker
-		  numberOfMonths: 3
-		  dateFormat: 'D, dd M yy'
-		  beforeShowDay: (date) ->
-		    for contract, dates of booked
-		      if booked.hasOwnProperty(contract)
-		        if date >= new Date(dates.begin) and date <= new Date(dates.end)
-		          return [false, ""]
-		    return [true, ""]
-		  onClose: (selectedDate) ->
-		  	$("#contract_end").datepicker "option", "minDate", selectedDate
-
-		$("#contract_end").datepicker
-		  numberOfMonths: 3
-		  dateFormat: 'D, dd M yy'
-		  beforeShowDay: (date) ->
-		    for contract, dates of booked
-		      if booked.hasOwnProperty(contract)
-		        if date >= new Date(dates.begin) and date <= new Date(dates.end)
-		          return [false, ""]
-		    return [true, ""]
-		  onClose: (selectedDate) ->
-		  	$("#contract_begin").datepicker "option", "maxDate", selectedDate
-  		###
+	$("#dates").datepick
+		monthsToShow: 3
+		minDate: 0
+		maxDate: '+1y'
+		rangeSelect: true
+		showOtherMonths: true
+		renderer: $.datepick.themeRollerRenderer
+		showTrigger: '<img src="/assets/calendar-blue.gif" alt="Popup" class="trigger datepick-trigger" style="margin-left: 5px; margin-bottom: 10px; cursor: pointer;" />'
+		onDate: (date, inMonth) ->
+			if booked?
+				for contract, dates of booked
+					beginDate = new Date(dates.begin)
+					endDate = new Date(dates.end)
+					endDate.setDate(endDate.getDate() + 1)
+					alert beginDate + " <= " + date + " <= " + endDate
+					if booked.hasOwnProperty(contract)
+						if date >= beginDate and date < endDate
+							return {selectable: false, dateClass: 'unselectable', title: 'Unavailable'}
+			return selectable: true

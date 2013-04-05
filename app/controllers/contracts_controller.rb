@@ -40,6 +40,7 @@ class ContractsController < ApplicationController
       @booked.merge!(dates)
     end
     @booked = @booked.to_json
+    session[:booked] = @booked
 
     respond_to do |format|
       format.html # new.html.erb

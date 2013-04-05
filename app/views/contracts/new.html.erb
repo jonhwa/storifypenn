@@ -1,6 +1,6 @@
 <% content_for(:head) do %>
   <%= javascript_tag do %>
-    window.booked = <%= raw @booked %>
+	window.booked = <%= raw session[:booked] %>
   <% end %>
 <% end %>
 
