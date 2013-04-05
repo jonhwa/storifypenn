@@ -14,6 +14,15 @@ a.thumbnail {
 	height: 600px;
 }
 
+span#available {
+	display: block;
+	font-size: 12px !important;
+}
+
+span#available .ui-datepicker {
+	margin-bottom: 20px;
+}
+
 .ui-datepicker td span, .ui-datepicker td a {
 	display: block;
 	padding: 0.2em;
@@ -21,10 +30,21 @@ a.thumbnail {
 }
 
 .ui-datepicker-group {
-	width: 200px !important;
+	width: 220px !important;
 }
 
 .ui-datepicker-group table {
 	width: 95%;
 	margin: 0 auto 5px;
+}
+
+.ui-datepicker-header {
+	width: 100%;
+	display: table;
+	padding: 2px 0;
+}
+
+.ui-datepicker-header select {
+	padding: 0;
+	margin-bottom: 0;
 }

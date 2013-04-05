@@ -39,6 +39,9 @@
   if booked?
     $("#available").datepick
       monthsToShow: 3
+      minDate: 0
+      maxDate: '+1y'
+      rangeSelect: true
       showOtherMonths: true
       renderer: $.datepick.themeRollerRenderer
       

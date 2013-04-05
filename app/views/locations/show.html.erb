@@ -10,17 +10,14 @@
 <h5 class="no-top-margin"><%= @location.city + ', ' + @location.state + ' ' + @location.zipcode %></h5>
 
 <div class="row">
-  <div class="span9">
+  <div class="span10">
     <p>
       <b>Availability</b>
-      <div id="available"></div>
+      <span id="available"></span>
     </p>
 
-    <br />
-    <p>
-      <b>Features</b>
-    </p>
     <div style="width: 500px;">
+      <p><b>Features</b></p>
       <table class="table table-bordered center">
         <thead>
           <tr>
@@ -53,7 +50,7 @@
       </table>
     </div>
   </div>
-  <div class="span3">
+  <div class="span2">
     <p>
       <b>Rate:</b>
       <%= @location.rate %>
