@@ -52,3 +52,12 @@ span#available .ui-datepicker {
 .unselectable {
 	background: #ccc;
 }
+
+.nav .dropdown {
+	margin-top: 8px;
+}
+
+.nav .open .dropdown-toggle {
+	color: #000;
+	background: none;
+}
