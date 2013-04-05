@@ -39,6 +39,7 @@
   if booked?
     $("#available").datepick
       monthsToShow: 3
+      showOtherMonths: true
       renderer: $.datepick.themeRollerRenderer
       
     ###
