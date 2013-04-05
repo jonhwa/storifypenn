@@ -4,6 +4,16 @@
 
 $ ->
 	if booked?
+		$("#dates").datepick
+			monthsToShow: 3
+			minDate: 0
+			maxDate: '+1y'
+			rangeSelect: true
+			showOtherMonths: true
+			renderer: $.datepick.themeRollerRenderer
+			showTrigger: '<img src="/assets/calendar-blue.gif" alt="Popup" class="trigger datepick-trigger" style="margin-left: 5px; margin-bottom: 10px; cursor: pointer;" />'
+
+		###
 		$("#contract_begin").datepicker
 		  numberOfMonths: 3
 		  dateFormat: 'D, dd M yy'
@@ -27,4 +37,4 @@ $ ->
 		    return [true, ""]
 		  onClose: (selectedDate) ->
 		  	$("#contract_begin").datepicker "option", "maxDate", selectedDate
-  
+  		###

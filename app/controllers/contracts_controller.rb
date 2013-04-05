@@ -57,6 +57,7 @@ class ContractsController < ApplicationController
   # POST /contracts.json
   def create
     @contract = Contract.new(params[:contract])
+    @contract.date_range(params[:dates])
     @location = Location.find(params[:location_id])
 
     respond_to do |format|

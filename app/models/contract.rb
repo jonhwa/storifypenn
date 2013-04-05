@@ -25,6 +25,12 @@ class Contract < ActiveRecord::Base
     location.id
   end
 
+  def date_range(dates)
+    beginDate, endDate = dates.split(' - ')
+    self.begin = Date.strptime(beginDate, '%m/%d/%Y')
+    self.end = Date.strptime(endDate, '%m/%d/%Y')
+  end
+
   def validateDates
     booked = {}
     self.location.contracts.order("begin").each do |contract|
