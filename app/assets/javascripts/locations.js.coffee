@@ -44,7 +44,13 @@
       rangeSelect: true
       showOtherMonths: true
       renderer: $.datepick.themeRollerRenderer
-      
+      onDate: (date, inMonth) ->
+        for contract, dates of booked
+          if booked.hasOwnProperty(contract)
+            if date >= new Date(dates.begin) and date <= new Date(dates.end)
+              return {selectable: false, dateClass: 'unselectable', title: 'Unavailable'}
+        return selectable: true
+
     ###
     $("#available").datepicker
       numberOfMonths: 2
