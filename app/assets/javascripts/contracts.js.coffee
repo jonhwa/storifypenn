@@ -17,7 +17,7 @@ $ ->
 					beginDate = new Date(dates.begin)
 					endDate = new Date(dates.end)
 					endDate.setDate(endDate.getDate() + 1)
-					if booked.hasOwnProperty(contract)
+					if booked.hasOwnProperty(contract) and inMonth
 						if date >= beginDate and date < endDate
 							return {selectable: false, dateClass: 'unselectable', title: 'Unavailable'}
 			return selectable: true
