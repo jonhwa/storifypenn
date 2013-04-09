@@ -72,6 +72,13 @@ a.blue {
 	border-radius: 5px;
 }
 
+.close, .show {
+	display: inline-block;
+	float: right;
+	margin-top: 4px;
+	cursor: pointer;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html, body {

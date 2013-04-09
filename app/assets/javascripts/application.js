@@ -20,3 +20,15 @@
 //= require jquery.datepick.min.js
 //= require jquery.datepick.ext.min.js
 //= require_self
+
+$(function() {
+	$(".close").click(function() {
+		$(this).parent().fadeOut('slow');
+		$(".show").fadeIn('slow');
+	});
+
+	$(".show").click(function() {
+		$(".alert").fadeIn('slow');
+		$(this).hide();
+	});
+});

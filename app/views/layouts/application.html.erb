@@ -35,13 +35,17 @@
       <% if alert %>
         <div class="alert alert-error">
           <%= alert %>
+          <span class="close"><i class="icon-remove"></i></span>
         </div>
       <% end %>
       <% if notice %>
         <div class="alert alert-success">
           <%= notice %>
+          <span class="close"><i class="icon-remove"></i></span>
         </div>
       <% end %>
+
+      <span style="display: none; margin-right: 13px;" class="show"><i class="icon-warning-sign"></i></span>
       
       <%= yield %>
     </div>
