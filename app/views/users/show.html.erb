@@ -7,7 +7,7 @@
 		<li <%= 'class=active' if params[:path] == 'profile' %>><a href="#tab3" data-toggle="tab">Profile</a></li>
 	</ul>
 	<div class="tab-content">
-		<div class="tab-pane active" id="tab1">
+		<div class="tab-pane <%= 'active' if params[:path] == 'listings' %>" id="tab1">
 			<% @booked = Contract.where("buyer_id = #{current_user.id}").order("begin DESC") %>
 			<ul class="thumbnails">
                 <% @booked.each do |contract| %>
@@ -29,7 +29,7 @@
                 <% end %>
             </ul>
 		</div>
-		<div class="tab-pane" id="tab2">
+		<div class="tab-pane <%= 'active' if params[:path] == 'bookings' %>" id="tab2">
 			<% @sold = Contract.where("seller_id = #{current_user.id}").order("begin DESC") %>
 			<ul class="thumbnails">
                 <% @sold.each do |contract| %>
@@ -51,7 +51,7 @@
                 <% end %>
             </ul>
 		</div>
-		<div class="tab-pane" id="tab3">
+		<div class="tab-pane <%= 'active' if params[:path] == 'profile' %>" id="tab3">
 			<p>
 				<b>First name:</b>
 				<%= @user.first_name %>
