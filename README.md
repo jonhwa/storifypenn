@@ -14,11 +14,11 @@ Todo List
 
 Basic Functionality
 ------
--~~Add full calendar functionality for showing a location w/ booked dates~~  
+-<del>Add full calendar functionality for showing a location w/ booked dates</del>  
 -Preview/select location from the map view  
--~~Restrict a new contract from having conflicting dates with previous contracts~~  
+-<del>Restrict a new contract from having conflicting dates with previous contracts</del>  
 -Clarify rates and storage space dimensions  
--~~Restrict the selection of the user for location and contract creation~~  
+-<del>Restrict the selection of the user for location and contract creation</del>  
 -Summary of buyer (booked/watched spaces) and seller (listed spaces and bookings) information in User Profile  
   
 Enhanced Functionality
