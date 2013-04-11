@@ -87,7 +87,7 @@ class LocationsController < ApplicationController
 
     if current_user.id != @location.user_id
       flash[:alert] = "You don't have permission to edit this storage space listing."
-      redirect_to :action => "show", :id => @location.id    
+      redirect_to :action => "show", :id => @location.id
     end
   end
 

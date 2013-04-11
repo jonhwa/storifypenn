@@ -36,12 +36,31 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab12">
-                    
+                    <% @bookings = Contract.where("seller_id = ? AND end > ?", current_user.id, Date.today).order("begin ASC") %>
+                    <ul class="thumbnails">
+                        <% @bookings.each do |contract| %>
+                            <li class="span6">
+                                <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
+                                    <div class="row">
+                                        <div class="span3">
+                                            <p>Booked by <%= contract.buyer.name %><br />
+                                            <%= contract.location.address %><br />
+                                            Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
+                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                        </div>
+                                        <div class="span3 no-left-margin center-content">
+                                            <h1>$<%= contract.rate %></h1>
+                                        </div>
+                                    </div>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab13">
-                    <% @sold = Contract.where("seller_id = #{current_user.id}").order("begin DESC") %>
+                    <% @bookings = Contract.where("seller_id = ? AND end < ?", current_user.id, Date.today).order("begin DESC") %>
                     <ul class="thumbnails">
-                        <% @sold.each do |contract| %>
+                        <% @bookings.each do |contract| %>
                             <li class="span6">
                                 <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
                                     <div class="row">
@@ -64,31 +83,76 @@
         </div>
 		<div class="tab-pane <%= 'active' if params[:path] == 'bookings' %>" id="tab2">
             <ul class="nav nav-pills less-top-margin">
-                <li class="active"><a href="#tab1.1" data-toggle="tab">Active Bookings</a></li>
-                <li><a href="#tab1.2" data-toggle="tab">Watchlist</a></li>
-                <li><a href="#tab1.3" data-toggle="tab">Past Bookings</a></li>
+                <li class="active"><a href="#tab21" data-toggle="tab">Active Bookings</a></li>
+                <li><a href="#tab22" data-toggle="tab">Watchlist</a></li>
+                <li><a href="#tab23" data-toggle="tab">Past Bookings</a></li>
             </ul>
-            <div class="tab-inner">
-    			<% @booked = Contract.where("buyer_id = #{current_user.id}").order("begin DESC") %>
-                <ul class="thumbnails">
-                    <% @booked.each do |contract| %>
-                        <li class="span6">
-                            <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
-                                <div class="row">
-                                    <div class="span3">
-                                        <p>Listed by <%= contract.seller.name %><br />
-                                        <%= contract.location.address %><br />
-                                        Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
-                                        From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+            <div class="tab-content">
+                <div class="tab-pane tab-inner active" id="tab21">
+                    <% @bookings = Contract.where("buyer_id = ? AND end < ?", current_user.id, Date.today).order("begin DESC") %>
+                    <ul class="thumbnails">
+                        <% @bookings.each do |contract| %>
+                            <li class="span6">
+                                <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
+                                    <div class="row">
+                                        <div class="span3">
+                                            <p><%= contract.location.address %><br />
+                                            Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
+                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                        </div>
+                                        <div class="span3 no-left-margin center-content">
+                                            <h1>$<%= contract.rate %></h1>
+                                        </div>
                                     </div>
-                                    <div class="span3 no-left-margin center-content">
-                                        <h1>$<%= contract.rate %></h1>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="tab-pane tab-inner" id="tab22">
+                    <!-- Watchlist -->
+                    <% @bookings = Contract.where("buyer_id = ?", current_user.id).order("begin DESC") %>
+                    <ul class="thumbnails">
+                        <% @bookings.each do |contract| %>
+                            <li class="span6">
+                                <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
+                                    <div class="row">
+                                        <div class="span3">
+                                            <p><%= contract.location.address %><br />
+                                            Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
+                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                        </div>
+                                        <div class="span3 no-left-margin center-content">
+                                            <h1>$<%= contract.rate %></h1>
+                                        </div>
                                     </div>
-                                </div>
-                            <% end %>
-                        </li>
-                    <% end %>
-                </ul>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="tab-pane tab-inner" id="tab23">
+                    <% @bookings = Contract.where("buyer_id = ?", current_user.id).order("begin DESC") %>
+                    <ul class="thumbnails">
+                        <% @bookings.each do |contract| %>
+                            <li class="span6">
+                                <%= link_to(location_contract_path(contract.location, contract), :class => 'thumbnail') do %>
+                                    <div class="row">
+                                        <div class="span3">
+                                            <p>Listed by <%= contract.seller.name %><br />
+                                            <%= contract.location.address %><br />
+                                            Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
+                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                        </div>
+                                        <div class="span3 no-left-margin center-content">
+                                            <h1>$<%= contract.rate %></h1>
+                                        </div>
+                                    </div>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
 		</div>
 		<div class="tab-pane <%= 'active' if params[:path] == 'profile' %>" id="tab3">
@@ -121,5 +185,4 @@
 	</div>
 </div>
 
-<%= link_to 'Edit', edit_user_registration_path(@user) %> |
 <%= link_to 'Back', locations_search_path %>
