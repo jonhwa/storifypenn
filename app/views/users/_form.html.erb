@@ -27,15 +27,9 @@
     <%= f.label :zipcode %><br />
     <%= f.text_field :zipcode %>
   </div>
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-large btn-primary'%>
   </div>
 <% end %>
