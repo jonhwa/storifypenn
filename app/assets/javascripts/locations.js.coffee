@@ -29,8 +29,18 @@
             position: myLatlng
             map: map
             title: price + ' - ' + address
-            url: ''
           )
+
+          marker.html = '<div>' + address + '</div>'
+
+          infoBubble = new InfoBubble(
+            maxwidth: 300
+            disableAutoPan: true
+          )
+
+          google.maps.event.addListener marker, "click", ->
+            infoBubble.setContent @html
+            infoBubble.open map, this
 
     $('a[href="#tab2"]').on "shown", (e) ->
       center = map.getCenter()

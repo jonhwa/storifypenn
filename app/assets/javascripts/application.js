@@ -19,6 +19,7 @@
 //= require jquery-ui-1.10.2.custom.min.js
 //= require jquery.datepick.min.js
 //= require jquery.datepick.ext.min.js
+//= require infobubble.js
 //= require_self
 
 $(function() {
