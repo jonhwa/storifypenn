@@ -28,7 +28,7 @@ class LocationsController < ApplicationController
     #Find when the location is booked and pass that to javascript function for rendering the calendar
     @booked = {}
     @location.contracts.each do |contract|
-      dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
+      dates = {contract.id => {'begin_time' => contract.begin_time.strftime('%B %d, %Y'), 'end_time' => contract.end_time.strftime('%B %d, %Y')}}
       @booked.merge!(dates)
     end
     @booked = @booked.to_json

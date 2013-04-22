@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab12">
-                    <% @bookings = Contract.where("seller_id = ? AND end > ?", current_user.id, Date.today).order("begin ASC") %>
+                    <% @bookings = Contract.where("seller_id = ? AND end_time > ?", current_user.id, Date.today).order("begin_time ASC") %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -46,7 +46,7 @@
                                             <p>Booked by <%= contract.buyer.name %><br />
                                             <%= contract.location.address %><br />
                                             Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
-                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                            From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
                                             <h1>$<%= contract.rate %></h1>
@@ -58,7 +58,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab13">
-                    <% @bookings = Contract.where("seller_id = ? AND end < ?", current_user.id, Date.today).order("begin DESC") %>
+                    <% @bookings = Contract.where("seller_id = ? AND end_time < ?", current_user.id, Date.today).order("begin_time DESC") %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -68,7 +68,7 @@
                                             <p>Booked by <%= contract.buyer.name %><br />
                                             <%= contract.location.address %><br />
                                             Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
-                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                            From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
                                             <h1>$<%= contract.rate %></h1>
@@ -88,7 +88,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane tab-inner active" id="tab21">
-                    <% @bookings = Contract.where("buyer_id = ? AND end > ?", current_user.id, Date.today).order("begin ASC") %>
+                    <% @bookings = Contract.where("buyer_id = ? AND end_time > ?", current_user.id, Date.today).order("begin_time ASC") %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -97,7 +97,7 @@
                                         <div class="span3">
                                             <p><%= contract.location.address %><br />
                                             Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
-                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                            From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
                                             <h1>$<%= contract.rate %></h1>
@@ -109,7 +109,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab22">
-                    <% @bookings = Contract.where("buyer_id = ? AND end < ?", current_user.id, Date.today).order("begin DESC") %>
+                    <% @bookings = Contract.where("buyer_id = ? AND end_time < ?", current_user.id, Date.today).order("begin_time DESC") %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -119,7 +119,7 @@
                                             <p>Listed by <%= contract.seller.name %><br />
                                             <%= contract.location.address %><br />
                                             Booked on <%= contract.created_at.strftime("%b %e, %Y") %><br />
-                                            From <%= contract.begin.strftime("%b %e, %Y") %> to <%= contract.end.strftime("%b %e, %Y") %></p>
+                                            From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
                                             <h1>$<%= contract.rate %></h1>

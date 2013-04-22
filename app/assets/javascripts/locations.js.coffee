@@ -22,11 +22,14 @@
           lat = locations[location].latitude
           lon = locations[location].longitude
           myLatlng = new google.maps.LatLng(lat, lon)
+          address = locations[location].address
+          price = '$' + locations[location].rate
 
           marker = new google.maps.Marker(
             position: myLatlng
             map: map
-            title: "Hello World!"
+            title: price + ' - ' + address
+            url: ''
           )
 
     $('a[href="#tab2"]').on "shown", (e) ->
@@ -46,7 +49,10 @@
       renderer: $.datepick.themeRollerRenderer
       onDate: (date, inMonth) ->
         for contract, dates of booked
+          beginDate = new Date(dates.begin_time)
+          endDate = new Date(dates.end_time)
+          endDate.setDate(endDate.getDate() + 1)
           if booked.hasOwnProperty(contract) and inMonth
-            if date >= new Date(dates.begin) and date <= new Date(dates.end)
+            if date >= beginDate and date < endDate
               return {selectable: false, dateClass: 'unselectable', title: 'Unavailable'}
         return selectable: true

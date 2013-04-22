@@ -4,9 +4,9 @@ class Contract < ActiveRecord::Base
   belongs_to :seller, :class_name => 'User'
   belongs_to :buyer, :class_name => 'User'
   belongs_to :location
-  attr_accessible :seller_id, :buyer_id, :location_id, :begin, :end, :rate
+  attr_accessible :seller_id, :buyer_id, :location_id, :begin_time, :end_time, :rate
 
-  validates :seller, :buyer, :location, :begin, :end, :presence => true
+  validates :seller, :buyer, :location, :begin_time, :end_time, :presence => true
   validate :validateDates
 
   def seller_name
@@ -27,27 +27,27 @@ class Contract < ActiveRecord::Base
 
   def date_range(dates)
     beginDate, endDate = dates.split(' - ')
-    self.begin = Date.strptime(beginDate, '%m/%d/%Y')
-    self.end = Date.strptime(endDate, '%m/%d/%Y')
+    self.begin_time = Date.strptime(beginDate, '%m/%d/%Y')
+    self.end_time = Date.strptime(endDate, '%m/%d/%Y')
   end
 
   def validateDates
     booked = {}
-    self.location.contracts.order("begin").each do |contract|
-      dates = {contract.id => {'begin' => contract.begin.strftime('%B %d, %Y'), 'end' => contract.end.strftime('%B %d, %Y')}}
+    self.location.contracts.order('begin_time').each do |contract|
+      dates = {contract.id => {'begin_time' => contract.begin_time.strftime('%B %d, %Y'), 'end_time' => contract.end_time.strftime('%B %d, %Y')}}
       booked.merge!(dates)
     end
 
     for contract in booked
-      contractBegin = Date.strptime(contract[1]['begin'], "%B %d, %Y")
-      contractEnd = Date.strptime(contract[1]['end'], "%B %d, %Y")
+      contractBegin = Date.strptime(contract[1]['begin_time'], "%B %d, %Y")
+      contractEnd = Date.strptime(contract[1]['end_time'], "%B %d, %Y")
 
-      if self.begin >= contractBegin and self.begin <= contractEnd
-        errors.add(:begin, 'The starting date isn\'t available')
+      if self.begin_time >= contractBegin and self.begin_time <= contractEnd
+        errors.add(:begin_time, 'The starting date isn\'t available')
       end
 
-      if (self.end >= contractBegin and self.end <= contractEnd) or (self.begin < contractBegin and self.end > contractEnd)
-        errors.add(:end, 'The ending date isn\'t available')
+      if (self.end_time >= contractBegin and self.end_time <= contractEnd) or (self.begin_time < contractBegin and self.end_time > contractEnd)
+        errors.add(:end_time, 'The ending date isn\'t available')
       end
     end
   end

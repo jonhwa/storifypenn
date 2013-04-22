@@ -14,8 +14,8 @@ $ ->
 		onDate: (date, inMonth) ->
 			if booked?
 				for contract, dates of booked
-					beginDate = new Date(dates.begin)
-					endDate = new Date(dates.end)
+					beginDate = new Date(dates.begin_time)
+					endDate = new Date(dates.end_time)
 					endDate.setDate(endDate.getDate() + 1)
 					if booked.hasOwnProperty(contract) and inMonth
 						if date >= beginDate and date < endDate

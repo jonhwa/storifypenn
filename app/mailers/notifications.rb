@@ -10,8 +10,8 @@ class Notifications < ActionMailer::Base
     @greeting = "Dear " + contract.seller_name
     @buyer_name = contract.buyer_name
     @buyer_first_name = contract.buyer.first_name
-    @begin = contract.begin
-    @end = contract.end
+    @begin = contract.begin_time
+    @end = contract.end_time
     @rate = contract.rate
     @buyer_email = contract.buyer.email
     #@contract = contract
