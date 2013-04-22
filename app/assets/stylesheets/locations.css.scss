@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a.blue {
+	color: #049cdb !important;
+}
+
+a.blue:hover {
+	color: #005580 !important;
+	text-decoration: none !important;
+}
+
 a.btn {
 	margin-top: 10px;
 }

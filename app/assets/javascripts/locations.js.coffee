@@ -22,19 +22,29 @@
           lat = locations[location].latitude
           lon = locations[location].longitude
           myLatlng = new google.maps.LatLng(lat, lon)
+          id = locations[location].id
           address = locations[location].address
+          city = locations[location].city
+          state = locations[location].state
           price = '$' + locations[location].rate
+          fullAddress = address + ' ' + city + ', ' + state
+          url = '/locations/' + id
 
           marker = new google.maps.Marker(
             position: myLatlng
             map: map
-            title: price + ' - ' + address
           )
 
-          marker.html = '<div>' + address + '</div>'
+          marker.html = '<div><p>' + fullAddress + '<br />' + price + ' per month <br />' + '<a class="blue" href="' + url + '">More details</a> </p></div>'
 
           infoBubble = new InfoBubble(
-            maxwidth: 300
+            maxwidth: 150
+            arrowSize: 9
+            arrowStyle: 2
+            borderWidth: 1
+            borderColor: '#049cdb'
+            borderRadius: 4
+            hideCloseButton: true
             disableAutoPan: true
           )
 
