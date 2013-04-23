@@ -16,7 +16,7 @@
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions)
 
-    if locations?
+    if locations? 
       for location of locations
         if locations.hasOwnProperty(location)
           lat = locations[location].latitude

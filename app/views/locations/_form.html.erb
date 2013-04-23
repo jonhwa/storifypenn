@@ -11,32 +11,47 @@
     </div>
   <% end %>
 
+  <legend>Location</legend>
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label :address %>
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :city %><br />
+    <%= f.label :city %>
     <%= f.text_field :city %>
   </div>
   <div class="field">
-    <%= f.label :state %><br />
+    <%= f.label :state %>
     <%= f.text_field :state %>
   </div>
   <div class="field">
-    <%= f.label :zipcode %><br />
+    <%= f.label :zipcode %>
     <%= f.text_field :zipcode %>
+  </div><br />
+
+  <legend>Dimensions & Rate</legend>
+  <div class="field">
+    <%= f.label :width %>
+    <%= f.number_field :width %>
+    <span class="help-block">Dimensions are in feet.</span>
   </div>
   <div class="field">
-    <%= f.label :rate %><br />
+    <%= f.label :length %>
+    <%= f.number_field :length %>
+  </div>
+  <div class="field">
+    <%= f.label :rate %>
     <%= f.number_field :rate %>
-  </div>
+    <span class="help-block">Rates are per square foot. <a class="blue">Need help?</a></span>
+  </div><br />
+
+  <legend>Features & Details</legend>
   <div class="field">
-    <%= f.label :ac, "Amenities" %><br />
-    <%= f.check_box :ac %> <b>A/C</b> <br />
-    <%= f.check_box :dehumidifier %> <b>Dehumidifier</b> <br />
-    <%= f.check_box :alarm %> <b>Alarm</b> <br />
-    <%= f.check_box :basement %> <b>Basement</b> <br />
+    <%= f.label :amenities, "Amenities" %>
+    <label><%= f.check_box :ac %> <b>A/C</b></label>
+    <label><%= f.check_box :dehumidifier %> <b>Dehumidifier</b></label>
+    <label><%= f.check_box :alarm %> <b>Alarm</b></label>
+    <label><%= f.check_box :basement %> <b>Basement</b></label>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
