@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422140200) do
+ActiveRecord::Schema.define(:version => 20130423225124) do
 
   create_table "contracts", :force => true do |t|
     t.integer  "seller_id"
@@ -33,17 +33,17 @@ ActiveRecord::Schema.define(:version => 20130422140200) do
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.integer  "rate"
+    t.decimal  "rate",         :precision => 6, :scale => 2
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.boolean  "ac"
     t.boolean  "dehumidifier"
     t.text     "available"
     t.float    "latitude"
     t.float    "longitude"
-    t.decimal  "length"
-    t.decimal  "width"
+    t.decimal  "length",       :precision => 5, :scale => 1
+    t.decimal  "width",        :precision => 5, :scale => 1
     t.boolean  "basement"
     t.boolean  "alarm"
   end

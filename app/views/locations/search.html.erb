@@ -46,7 +46,7 @@
                                         <%= (location.city + ", " + location.state + " " + location.zipcode) %></p>
                                     </div>
                                     <div class="span3 no-left-margin center-content">
-                                        <h1>$<%= location.rate %></h1>
+                                        <h1><%= number_to_currency(location.rate) %></h1>
                                     </div>
                                 </div>
                             <% end %>

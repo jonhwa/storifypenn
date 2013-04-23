@@ -32,12 +32,12 @@
   <legend>Dimensions & Rate</legend>
   <div class="field">
     <%= f.label :dimensions %>
-    <%= f.number_field :width, :in => 1..100, :class => 'dimension' %>  by  <%= f.number_field :length, :in => 0..100, :class => 'dimension' %>
+    <%= f.text_field :width, :in => 1..100, :class => 'dimension' %>  by  <%= f.text_field :length, :in => 0..100, :class => 'dimension' %>
     <span class="help-block">Measurements should be in feet.</span>
   </div>
   <div class="field">
     <%= f.label :rate %>
-    <%= f.number_field :rate %>
+    <%= f.text_field :rate %>
     <span class="help-block">Rates are per square foot per month. <a id="rate-help-show" class="blue">Need help?</a></span>
     <span id="rate-help">
       <span class="help-block">Campus storage charges about $7-$9/sqft per month. This includes pick-up and delivery of boxes.</span>

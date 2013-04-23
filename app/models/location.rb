@@ -6,6 +6,8 @@ class Location < ActiveRecord::Base
 	validates :address, :city, :state, :zipcode, :user, :width, :length, :rate, :presence => true
 	validates :zipcode, :length => { :is => 5 }
 	validates :zipcode, :numericality => { :only_integer => true }
+	validates :rate, :width, :length, :numericality => true
+	validates :rate, :width, :length, :numericality => { :greater_than_or_equal_to => 0 }
 
 	geocoded_by :full_address
 	after_validation :geocode
