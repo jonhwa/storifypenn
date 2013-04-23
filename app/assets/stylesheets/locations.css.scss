@@ -70,3 +70,16 @@ span#available .ui-datepicker {
 	color: #000;
 	background: none;
 }
+
+input.dimension {
+	width: 40px;
+	margin-right: 5px;
+}
+
+input#location_length {
+	margin-left: 5px;
+}
+
+span#rate-help {
+	display: none;
+}

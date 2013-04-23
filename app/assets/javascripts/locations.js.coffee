@@ -76,3 +76,6 @@
             if date >= beginDate and date < endDate
               return {selectable: false, dateClass: 'unselectable', title: 'Unavailable'}
         return selectable: true
+
+  $("#rate-help-show").click ->
+    $("#rate-help").show()
