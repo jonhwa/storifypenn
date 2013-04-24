@@ -36,10 +36,12 @@ class Location < ActiveRecord::Base
 				end
 			end
 		end
+		return true
 	end
 
 	#Executes a search given an address and requested dates
 	def self.search(address, dates)
+		#raise "#{dates.blank?}"
 		startDate, endDate = nil
 		unless dates.blank?
 			beginDate, endDate = dates.split(' - ')

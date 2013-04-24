@@ -1,10 +1,14 @@
+<% content_for(:head) do %>
+	
+<% end %>
+
 <h2>Find storage near you.</h2>
 <div class="well well-small">
     <%= form_tag(locations_search_path, :method => 'get', :class => 'no-bottom-margin') do %>
-        <%= text_field_tag 'address', nil, :placeholder => 'Where do you need storage?', :class => 'no-bottom-margin input-long' %>
+        <%= text_field_tag 'address', nil, :placeholder => 'Where do you need storage?', :class => 'no-bottom-margin input-long', :autocomplete => 'off' %>
         <%= text_field_tag 'search_dates', nil, :placeholder => 'When do you need it?', :class => 'no-bottom-margin input-short' %>
         <%= submit_tag 'Find a space', :class => 'btn btn-primary' %>
     <% end %>
 </div>
-
+<div id="mapCanvas"></div>
 <%= link_to 'Or list your own storage space', new_location_path %>

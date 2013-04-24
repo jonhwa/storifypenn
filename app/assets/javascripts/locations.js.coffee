@@ -2,8 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 @initialize = ->
+  #Incorporate Places autocomplete into index search form
+  defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(39.94847, -75.217123), new google.maps.LatLng(39.960346, -75.186825))
+  if $("#address").is("*")
+    input = document.getElementById("address") #Use regular JS instead of JQuery to avoid breaking Google Places Library
+    options =
+      bounds: defaultBounds
+      componentRestrictions:
+        country: "us"
+
+    autocomplete = new google.maps.places.Autocomplete(input, options)
+
   #Build Google map for the search page
-  if google?
+  if $("#map_canvas").is("*")
     #Get user's latitude and longitude, or default center if not defined
     if userLat? and userLon?
       myLatlng = new google.maps.LatLng(userLat, userLon)
