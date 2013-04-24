@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 @initialize = ->
+  #Build Google map for the search page
   if google?
     #Get user's latitude and longitude, or default center if not defined
     if userLat? and userLon?
@@ -59,6 +60,7 @@
       map.setZoom zoom
       map.setCenter center
 
+  #Initialize datepickers for the show page
   if booked?
     $("#available").datepick
       monthsToShow: 3
@@ -77,5 +79,16 @@
               return {selectable: false, dateClass: 'unselectable', title: 'Unavailable'}
         return selectable: true
 
+  #Initialize datepickers for the index page
+  $("#search_dates").datepick
+    monthsToShow: 2
+    minDate: 0
+    maxDate: '+1y'
+    rangeSelect: true
+    showOtherMonths: true
+    renderer: $.datepick.themeRollerRenderer
+    showTrigger: '<img src="/assets/calendar-blue.gif" alt="Popup" class="embed" style="cursor: pointer;" />'
+
+  #Initialize show behavior for new location page
   $("#rate-help-show").click ->
     $("#rate-help").show()
