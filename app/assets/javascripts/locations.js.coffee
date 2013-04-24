@@ -35,7 +35,7 @@
             map: map
           )
 
-          marker.html = '<div><p>' + fullAddress + '<br />' + price + ' per month <br />' + '<a class="blue" href="' + url + '">More details</a> </p></div>'
+          marker.html = '<div><p>' + fullAddress + '<br />' + price + ' per sqft per month <br />' + '<a class="blue" href="' + url + '">More details</a> </p></div>'
 
           infoBubble = new InfoBubble(
             maxwidth: 150

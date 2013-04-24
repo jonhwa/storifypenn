@@ -10,14 +10,12 @@
 <h5 class="no-top-margin"><%= @location.city + ', ' + @location.state + ' ' + @location.zipcode %></h5>
 
 <div class="row">
-  <div class="span10">
-    <p>
-      <b>Availability</b>
-      <span id="available"></span>
-    </p>
+  <div class="span9">
+    <legend>Availability</legend>
+    <span id="available"></span>
 
     <div style="width: 500px;">
-      <p><b>Features</b></p>
+      <legend>Features</legend>
       <table class="table table-bordered center">
         <thead>
           <tr>
@@ -50,19 +48,18 @@
       </table>
     </div>
   </div>
-  <div class="span2">
-    <p>
-      <b>Rate:</b>
-      <%= @location.rate %>
-    </p>
-    <p>
-      <b>User:</b>
-      <%= @location.user_name %>
-    </p>
+  <div class="span3">
+    <legend>Price</legend>
+    <div class="price sidebar">
+      <sup>$</sup><%= number_with_precision(@location.rate, :precision => 2) %>
+      <div class="light">Per sqft per month</div>
+      <%= link_to 'Book this space', new_location_contract_path(@location.id), :class => 'btn btn-large btn-primary' %>
+    </div>
+
+    <legend>Seller</legend>
+    <%= @location.user_name %>
   </div>
 </div>
 
-<%= link_to 'Book this space', new_location_contract_path(@location.id), :class => 'btn btn-large btn-primary' %>
-<br /><br />
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back to search results', locations_search_path %>
