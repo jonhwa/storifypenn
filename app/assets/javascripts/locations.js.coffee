@@ -26,7 +26,7 @@
           address = locations[location].address
           city = locations[location].city
           state = locations[location].state
-          price = '$' + locations[location].rate
+          price = '$' + Number(locations[location].rate).toFixed(2)
           fullAddress = address + ' ' + city + ', ' + state
           url = '/locations/' + id
 

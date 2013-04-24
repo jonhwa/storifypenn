@@ -87,3 +87,22 @@ span#rate-help {
 input[type='checkbox'] {
 	margin-top: 0;
 }
+
+div.price {
+	font-size: 36px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-top: 11px;
+	float: right;
+	text-align: right;
+}
+
+div.price sup {
+	font-size: 24px;
+}
+
+div.light {
+	margin-top: 2px;
+	color: #666;
+	font-size: 12px;
+}

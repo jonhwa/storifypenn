@@ -46,7 +46,10 @@
                                         <%= (location.city + ", " + location.state + " " + location.zipcode) %></p>
                                     </div>
                                     <div class="span3 no-left-margin center-content">
-                                        <h1><%= number_to_currency(location.rate) %></h1>
+                                        <div class="price">
+                                            <sup>$</sup><%= number_with_precision(location.rate, :precision => 2) %>
+                                            <div class="light">Per sqft per month</div>
+                                        </div>
                                     </div>
                                 </div>
                             <% end %>
