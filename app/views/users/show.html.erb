@@ -27,7 +27,10 @@
                                             <%= (listing.city + ", " + listing.state + " " + listing.zipcode) %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
-                                            <h1>$<%= listing.rate %></h1>
+                                            <div class="price">
+                                                <sup>$</sup><%= number_with_precision(listing.rate, :precision => 2) %>
+                                                <div class="light">Per sqft per month</div>
+                                            </div>
                                         </div>
                                     </div>
                                 <% end %>

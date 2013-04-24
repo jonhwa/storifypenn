@@ -105,6 +105,31 @@ label.checkbox input {
 	margin-top: 3px;
 }
 
+div.price {
+	font-size: 36px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-top: 11px;
+	float: right;
+	text-align: right;
+}
+
+div.sidebar {
+	text-align: left;
+	float: left;
+	margin-bottom: 15px;
+}
+
+div.price sup {
+	font-size: 24px;
+}
+
+div.light {
+	margin-top: 2px;
+	color: #666;
+	font-size: 12px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html, body {
