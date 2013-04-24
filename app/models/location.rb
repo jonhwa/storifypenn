@@ -20,6 +20,44 @@ class Location < ActiveRecord::Base
 		"#{self.address} #{self.city} #{self.state} #{self.zipcode}"
 	end
 
+	def getActiveContracts
+		self.contracts.where("end_time > ?", Date.today)
+	end
+
+	#Returns a boolean of availability during the given dates
+	def isAvailable(startDate, endDate)
+		unless startDate.blank? or endDate.blank?
+			contracts = getActiveContracts()
+			contracts.each do |contract|
+				beginTime = contract.begin_time
+				endTime = contract.end_time
+				if (beginTime..endTime).cover?(startDate) or (beginTime..endTime).cover?(endDate)
+					return false
+				end
+			end
+		end
+	end
+
+	#Executes a search given an address and requested dates
+	def self.search(address, dates)
+		startDate, endDate = nil
+		unless dates.blank?
+			beginDate, endDate = dates.split(' - ')
+	    	startDate = Date.strptime(beginDate, '%m/%d/%Y')
+	   		endDate = Date.strptime(endDate, '%m/%d/%Y')
+	   	end
+
+		latlng = Geocoder.coordinates(address)
+		rawLocations = self.near(latlng, 10)
+		locations = []
+		rawLocations.each do |location|
+			if location.isAvailable(startDate, endDate)
+				locations << location
+			end
+		end
+		return locations
+	end
+
 	scope :cheapest, order('rate asc')
 	scope :top_ten, limit(10)
 end
