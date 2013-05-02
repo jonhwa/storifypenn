@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 @initialize = ->
-  #Incorporate Places autocomplete into index search form
+  #Incorporate Places autocomplete into index address form entry
   defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(39.94847, -75.217123), new google.maps.LatLng(39.960346, -75.186825))
   if $("#address").is("*")
     input = document.getElementById("address") #Use regular JS instead of JQuery to avoid breaking Google Places Library

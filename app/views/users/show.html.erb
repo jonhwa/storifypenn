@@ -137,16 +137,12 @@
 		</div>
 		<div class="tab-pane <%= 'active' if params[:path] == 'profile' %>" id="tab3">
             <ul class="nav nav-pills less-top-margin less-bottom-margin">
-                <li class="active"><a href="#tab31" data-toggle="tab">Personal Information</a></li>
-                <li><a href="#tab32" data-toggle="tab">Security</a></li>
+                <li class="active"><a href="#tab31" data-toggle="tab">Account Information</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane tab-inner active" id="tab31">
-					<%= render 'form' %>
-                </div>
-                <div class="tab-pane tab-inner" id="tab32">
-                	<%= link_to 'Change your password', edit_user_password_path, :class => 'btn btn-large btn-primary' %>
-                	<br /><br />
+					<%= link_to 'Edit Account Information', edit_user_registration_path, :class => 'btn btn-large btn-success' %>
+                    <br /><br />
                 </div>
             </div>
 		</div>
