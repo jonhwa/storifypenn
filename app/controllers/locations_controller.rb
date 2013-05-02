@@ -22,16 +22,8 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
 
-    # Store location ID in session in case we want to access it in Contract controller
-    session['location'] = @location.id
-
     #Find when the location is booked and pass that to javascript function for rendering the calendar
-    @booked = {}
-    @location.contracts.each do |contract|
-      dates = {contract.id => {'begin_time' => contract.begin_time.strftime('%B %d, %Y'), 'end_time' => contract.end_time.strftime('%B %d, %Y')}}
-      @booked.merge!(dates)
-    end
-    @booked = @booked.to_json
+    @booked = @location.getBookedDates()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -86,9 +78,15 @@ class LocationsController < ApplicationController
   def edit
     @location = Location.find(params[:id])
 
+    # Check if the user owns the location
     if current_user.id != @location.user_id
       flash[:alert] = "You don't have permission to edit this storage space listing."
       redirect_to :action => "show", :id => @location.id
+    else
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @location }
+      end
     end
   end
 
