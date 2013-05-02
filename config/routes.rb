@@ -1,16 +1,15 @@
 Storifypenn::Application.routes.draw do
   devise_for :users
 
-  #match 'locations/search' => 'location#search'
-  get 'locations/search'
   resources :locations do
     resources :contracts
   end
+
+  # Needed to avoid adding a new action to the Locations controller
+  match "search/" => "search#index"
   
-  scope "/admin" do
-    resources :users
-  end
-  match 'users/:id' => 'users#show', :as => :user, :via => :get
+  # Needed because Devise takes care of the other pages, but I still need a show action 
+  match "users/:id" => "users#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

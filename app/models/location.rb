@@ -20,6 +20,11 @@ class Location < ActiveRecord::Base
 		"#{self.address} #{self.city} #{self.state} #{self.zipcode}"
 	end
 
+	#Returns the city, state, and zipcode formatted
+	def lower_address
+		"#{self.city}, #{self.state} #{self.zipcode}"
+	end
+
 	def getActiveContracts
 		self.contracts.where("end_time > ?", Date.today)
 	end

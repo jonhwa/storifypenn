@@ -7,7 +7,7 @@
 <p id="notice"><%= notice %></p>
 
 <h3 class="no-bottom-margin"><%= @location.address %></h3>
-<h5 class="no-top-margin"><%= @location.city + ', ' + @location.state + ' ' + @location.zipcode %></h5>
+<h5 class="no-top-margin"><%= @location.lower_address() %></h5>
 
 <div class="row">
   <div class="span9">
