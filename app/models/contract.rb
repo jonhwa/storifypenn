@@ -31,6 +31,22 @@ class Contract < ActiveRecord::Base
     self.end_time = Date.strptime(endDate, '%m/%d/%Y')
   end
 
+  def self.getSellerActiveContracts(user_id, currentTime)
+    where("seller_id = ? AND end_time > ?", user_id, currentTime).order("begin_time ASC")
+  end
+
+  def self.getSellerPastContracts(user_id, currentTime)
+    where("seller_id = ? AND end_time < ?", user_id, currentTime).order("begin_time DESC")
+  end
+
+  def self.getBuyerActiveContracts(user_id, currentTime)
+    where("buyer_id = ? AND end_time > ?", user_id, currentTime).order("begin_time ASC")
+  end
+
+  def self.getBuyerPastContracts(user_id, currentTime)
+    where("buyer_id = ? AND end_time > ?", user_id, currentTime).order("begin_time DESC")
+  end
+
   def validateDates
     booked = {}
     self.location.contracts.order('begin_time').each do |contract|

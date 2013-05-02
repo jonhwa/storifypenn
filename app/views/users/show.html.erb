@@ -15,7 +15,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane tab-inner active" id="tab11">
-        			<% @listings = Location.where("user_id = #{current_user.id}").order("created_at DESC") %>
+        			<% @listings = Location.getUsersLocations(current_user.id) %>
                     <ul class="thumbnails">
                         <% @listings.each do |listing| %>
                             <li class="span6">
@@ -39,7 +39,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab12">
-                    <% @bookings = Contract.where("seller_id = ? AND end_time > ?", current_user.id, Date.today).order("begin_time ASC") %>
+                    <% @bookings = Contract.getSellerActiveContracts(current_user.id, Date.today) %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -52,7 +52,10 @@
                                             From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
-                                            <h1>$<%= contract.rate %></h1>
+                                            <div class="price">
+                                                <sup>$</sup><%= number_with_precision(contract.rate, :precision => 2) %>
+                                                <div class="light">Per sqft per month</div>
+                                            </div>
                                         </div>
                                     </div>
                                 <% end %>
@@ -61,7 +64,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab13">
-                    <% @bookings = Contract.where("seller_id = ? AND end_time < ?", current_user.id, Date.today).order("begin_time DESC") %>
+                    <% @bookings = Contract.getSellerPastContracts(current_user.id, Date.today) %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -74,7 +77,10 @@
                                             From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
-                                            <h1>$<%= contract.rate %></h1>
+                                            <div class="price">
+                                                <sup>$</sup><%= number_with_precision(contract.rate, :precision => 2) %>
+                                                <div class="light">Per sqft per month</div>
+                                            </div>
                                         </div>
                                     </div>
                                 <% end %>
@@ -91,7 +97,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane tab-inner active" id="tab21">
-                    <% @bookings = Contract.where("buyer_id = ? AND end_time > ?", current_user.id, Date.today).order("begin_time ASC") %>
+                    <% @bookings = Contract.getBuyerActiveContracts(current_user.id, Date.today) %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -103,7 +109,10 @@
                                             From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
-                                            <h1>$<%= contract.rate %></h1>
+                                            <div class="price">
+                                                <sup>$</sup><%= number_with_precision(contract.rate, :precision => 2) %>
+                                                <div class="light">Per sqft per month</div>
+                                            </div>
                                         </div>
                                     </div>
                                 <% end %>
@@ -112,7 +121,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane tab-inner" id="tab22">
-                    <% @bookings = Contract.where("buyer_id = ? AND end_time < ?", current_user.id, Date.today).order("begin_time DESC") %>
+                    <% @bookings = Contract.getBuyerPastContracts(current_user.id, Date.today) %>
                     <ul class="thumbnails">
                         <% @bookings.each do |contract| %>
                             <li class="span6">
@@ -125,7 +134,10 @@
                                             From <%= contract.begin_time.strftime("%b %e, %Y") %> to <%= contract.end_time.strftime("%b %e, %Y") %></p>
                                         </div>
                                         <div class="span3 no-left-margin center-content">
-                                            <h1>$<%= contract.rate %></h1>
+                                            <div class="price">
+                                                <sup>$</sup><%= number_with_precision(contract.rate, :precision => 2) %>
+                                                <div class="light">Per sqft per month</div>
+                                            </div>
                                         </div>
                                     </div>
                                 <% end %>

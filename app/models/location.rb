@@ -48,6 +48,11 @@ class Location < ActiveRecord::Base
 		return true
 	end
 
+	#Finds locations belonging to a user
+	def self.getUsersLocations(user_id)
+		where("user_id = ?", user_id).order("created_at DESC")
+	end
+
 	#Executes a search given an address and requested dates
 	def self.search(address, dates)
 		#raise "#{dates.blank?}"
