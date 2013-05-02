@@ -24,6 +24,15 @@ class Location < ActiveRecord::Base
 		self.contracts.where("end_time > ?", Date.today)
 	end
 
+	def getBookedDates
+		booked = {}
+		self.contracts.each do |contract|
+			dates = {contract.id => {'begin_time' => contract.begin_time.strftime('%B %d, %Y'), 'end_time' => contract.end_time.strftime('%B %d, %Y')}}
+			booked.merge!(dates)
+		end
+		booked = booked.to_json
+	end
+
 	#Returns a boolean of availability during the given dates
 	def isAvailable(startDate, endDate)
 		unless startDate.blank? or endDate.blank?
