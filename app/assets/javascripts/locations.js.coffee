@@ -1,7 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-@initialize = ->
+
+$(document).ready ->
   #Incorporate Places autocomplete into index address form entry
   defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(39.94847, -75.217123), new google.maps.LatLng(39.960346, -75.186825))
   if $("#address").is("*")

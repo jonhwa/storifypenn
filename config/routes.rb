@@ -9,7 +9,7 @@ Storifypenn::Application.routes.draw do
   match "search/" => "search#index"
   
   # Needed because Devise takes care of the other pages, but I still need a show action 
-  match "users/:id" => "users#show"
+  match "users/:id" => "users#show", :as => "user"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

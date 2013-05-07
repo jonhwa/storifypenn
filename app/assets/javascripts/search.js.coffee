@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-@initialize = ->
+$(document).ready ->
   #Build Google map for the search page
   if $("#map_canvas").is("*")
     #Get user's latitude and longitude, or default center if not defined
