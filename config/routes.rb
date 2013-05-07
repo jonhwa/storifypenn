@@ -1,11 +1,11 @@
 Storifypenn::Application.routes.draw do
   devise_for :users
 
-  resources :locations do
+  resources :locations , :except => :index do
     resources :contracts
   end
 
-  resources :searches
+  resources :searches, :except => [:index, :destroy, :edit, :update]
   
   # Needed because Devise takes care of the other pages, but I still need a show action 
   match "users/:id" => "users#show", :as => "user"

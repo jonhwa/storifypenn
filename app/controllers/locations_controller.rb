@@ -3,20 +3,6 @@ class LocationsController < ApplicationController
   before_filter :authenticate_user!,
     :only => [:new, :edit]
 
-  # GET /locations
-  # GET /locations.json
-  def index
-    @locations = Location.all
-
-    # Clear session[:locations] for a new search
-    session.delete(:locations)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @locations }
-    end
-  end
-
   # GET /locations/1
   # GET /locations/1.json
   def show
