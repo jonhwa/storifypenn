@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423225124) do
+ActiveRecord::Schema.define(:version => 20130507163844) do
 
   create_table "contracts", :force => true do |t|
     t.integer  "seller_id"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20130423225124) do
   end
 
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
+
+  create_table "searches", :force => true do |t|
+    t.string   "address"
+    t.date     "begin_time"
+    t.date     "end_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

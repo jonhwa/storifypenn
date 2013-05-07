@@ -15,7 +15,7 @@
 //= require bootstrap.min
 //= require contracts
 //= require users
-//= require search
+//= require searches
 //= require locations
 //= require jquery-ui-1.10.2.custom.min.js
 //= require jquery.datepick.min.js

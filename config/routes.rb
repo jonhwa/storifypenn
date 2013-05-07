@@ -5,8 +5,7 @@ Storifypenn::Application.routes.draw do
     resources :contracts
   end
 
-  # Needed to avoid adding a new action to the Locations controller
-  match "search/" => "search#index"
+  resources :searches
   
   # Needed because Devise takes care of the other pages, but I still need a show action 
   match "users/:id" => "users#show", :as => "user"
@@ -60,7 +59,7 @@ Storifypenn::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'locations#index'
+  root :to => 'searches#new'
 
   # See how all your routes lay out with "rake routes"
 
