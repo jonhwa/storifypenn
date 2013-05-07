@@ -1,7 +1,7 @@
 Storifypenn::Application.routes.draw do
   devise_for :users
 
-  resources :locations , :except => :index do
+  resources :locations, :except => :index do
     resources :contracts
   end
 

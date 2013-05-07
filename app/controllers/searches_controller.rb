@@ -2,16 +2,13 @@ class SearchesController < ApplicationController
 	def show
 		@search = Search.find(params[:id])
 
-		@search.locations.each do |location|
-			(session[:locations] ||= []) << location
-	      	session[:notice] = @notice
-	    end
-
 	    @locations = []
 	    @search.locations.each do |location|
 	    	@locations << Location.find(location)
 	    end
 
+	    
+	    session[:search] = @search.id
 	    @notice = "<p>Showing the closest spaces to <u>#{@search.address}</u> <a href='/' class='blue'>(try another search)</a>:</p>"
 
 	    respond_to do |format|
@@ -32,6 +29,9 @@ class SearchesController < ApplicationController
 	def create
 		@search = Search.new(params[:search])
 		@search.get_locations(@search.address, params[:search_dates])
+
+		# Clear last search stored in session
+		session.delete(:search)
 
 		respond_to do |format|
 			if @search.save
