@@ -59,21 +59,13 @@ class Location < ActiveRecord::Base
 	end
 
 	#Executes a search given an address and requested dates
-	def self.search(address, dates)
-		#raise "#{dates.blank?}"
-		startDate, endDate = nil
-		unless dates.blank?
-			beginDate, endDate = dates.split(' - ')
-	    	startDate = Date.strptime(beginDate, '%m/%d/%Y')
-	   		endDate = Date.strptime(endDate, '%m/%d/%Y')
-	   	end
-
+	def self.search(address, startDate, endDate)
 		latlng = Geocoder.coordinates(address)
 		rawLocations = self.near(latlng, 10)
 		locations = []
 		rawLocations.each do |location|
 			if location.isAvailable(startDate, endDate)
-				locations << location
+				locations << location.id
 			end
 		end
 		return locations

@@ -1,28 +1,18 @@
 class SearchesController < ApplicationController
 	def show
-		# Check for a past search
-	    if !session[:locations].blank?
-	      @locations = []
-	      session[:locations].each do |location|
-	        @locations << Location.find(location)
-	      end
-	      @notice = session[:notice]
-	    elsif !params[:address].blank?
-	      address = params[:address]
-	      dates = params[:search_dates]
-	      @locations = Location.search(address, dates)
-	      @notice = "<p>Showing the closest spaces to <u>#{address}</u> <a href='/' class='blue'>(try another search)</a>:</p>"
-	    else
-	      @notice = "<p>Your location wasn't found, but here are some locations for you to consider:</p>"
-	      @locations = Location.cheapest.top_ten
+		@search = Search.find(params[:id])
+
+		@search.locations.each do |location|
+			(session[:locations] ||= []) << location
+	      	session[:notice] = @notice
 	    end
 
-	    # Store the resulting location IDs in a session array
-	    session.delete(:locations)
-	    @locations.each do |location|
-	      (session[:locations] ||= []) << location.id
-	      session[:notice] = @notice
+	    @locations = []
+	    @search.locations.each do |location|
+	    	@locations << Location.find(location)
 	    end
+
+	    @notice = "<p>Showing the closest spaces to <u>#{@search.address}</u> <a href='/' class='blue'>(try another search)</a>:</p>"
 
 	    respond_to do |format|
 	      format.html # search.html.erb
@@ -41,7 +31,7 @@ class SearchesController < ApplicationController
 
 	def create
 		@search = Search.new(params[:search])
-		@search.date_range(params[:search_dates])
+		@search.get_locations(params[:address], params[:search_dates])
 
 		respond_to do |format|
 			if @search.save
