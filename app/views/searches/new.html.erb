@@ -13,7 +13,7 @@
             </div>
         <% end %>
 
-        <%= text_field_tag :address, nil, :placeholder => 'Where do you need storage?', :class => 'no-bottom-margin input-long', :autocomplete => 'off' %>
+        <%= f.text_field :address, :placeholder => 'Where do you need storage?', :class => 'no-bottom-margin input-long', :autocomplete => 'off' %>
         <%= text_field_tag :search_dates, nil, :placeholder => 'When do you need it?', :class => 'no-bottom-margin input-short' %>
         <%= submit_tag 'Find a space', :class => 'btn btn-primary' %>
     <% end %>

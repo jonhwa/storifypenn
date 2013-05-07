@@ -31,7 +31,7 @@ class SearchesController < ApplicationController
 
 	def create
 		@search = Search.new(params[:search])
-		@search.get_locations(params[:address], params[:search_dates])
+		@search.get_locations(@search.address, params[:search_dates])
 
 		respond_to do |format|
 			if @search.save

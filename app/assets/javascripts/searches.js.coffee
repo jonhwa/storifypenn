@@ -5,8 +5,8 @@
 $(document).ready ->
   #Incorporate Places autocomplete into new page address form entry
   defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(39.94847, -75.217123), new google.maps.LatLng(39.960346, -75.186825))
-  if $("#address").is("*")
-    input = document.getElementById("address") #Use regular JS instead of JQuery to avoid breaking Google Places Library
+  if $("#search_address").is("*")
+    input = document.getElementById("search_address") #Use regular JS instead of JQuery to avoid breaking Google Places Library
     options =
       bounds: defaultBounds
       componentRestrictions:
